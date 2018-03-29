@@ -19,11 +19,31 @@ Initialize `operator`.
 - `options`:
   - `prefix` - prefix of `fileop` (`/fileop` by default)
   - `socketPrefix` - prefix of `socket.io` (`` by default)
+  
+
+Returns `operator` in callback.
+
+### operator
+
+It is `EventEmitter` from the inide produce next types of `events`:
+
+- `error`
+- `progress`
+- `file`
+- `end`
+
+Supports next types of operations:
+
+ - `operator.copy(from, to, names)`
+ - `opreator.remove(from, names)`
+ - `opreator.extract(from, to)`
+ - `operator.zip(from, to)`
+ - `operator.tar(from, to)`
 
 ```js
 const prefix = '/fileop';
 
-fileop((operator) => {
+fileop((error, operator) => {
     const from = '/';
     const to = '/tmp';
     const names = [
