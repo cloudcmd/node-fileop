@@ -98,7 +98,7 @@ app.use(fileop({
 fileop.listen(socket, {
     prefix: '/fileop',   /* default              */
     root: '/',          /* string or function   */
-    authCheck: (username, password, accept, reject) => {
+    authCheck: (accept, reject) => (username, password) => {
         if (username === 'root' && password === 'toor')
             accept();
         

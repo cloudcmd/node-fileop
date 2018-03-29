@@ -37,9 +37,7 @@ function listen(socket, options) {
                 return connection(root, socket);
             
             const reject = () => socket.emit('reject');
-            socket.on('auth', (username, password) => {
-                authCheck(username, password, connectionWraped(root, socket), reject);
-            })
+            socket.on('auth', authCheck(connectionWraped(root, socket), reject));
         });
 }
 

@@ -2,6 +2,7 @@
 
 const test = require('tape');
 const tryToCatch = require('try-to-catch');
+const currify = require('currify');
 
 const connect = require('../lib/connect');
 
@@ -33,7 +34,7 @@ test('fileop: options: authCheck not function', async (t) => {
 });
 
 test('fileop: options: authCheck: reject', async (t) => {
-    const authCheck = (username, password, accept, reject) => {
+    const authCheck = (accept, reject) => () => {
         reject();
     };
     
@@ -49,7 +50,7 @@ test('fileop: options: authCheck: reject', async (t) => {
 });
 
 test('fileop: options: authCheck: accept', async (t) => {
-    const authCheck = (username, password, accept) => {
+    const authCheck = (accept) => () => {
         accept();
     };
     
@@ -63,6 +64,23 @@ test('fileop: options: authCheck: accept', async (t) => {
         t.pass('should accept');
         t.end();
     });
+});
+
+test('fileop: options: authCheck: accept', async (t) => {
+    const user = 'bill';
+    const pass = 'world';
+    
+    const authCheck = currify((accept, reject, username, password) => {
+        done();
+        
+        t.equal(username, user, 'should pass username');
+        t.equal(password, pass, 'should pass password');
+        t.end();
+    });
+    
+    const {socket, done} = await connect({authCheck});
+    
+    socket.emit('auth', user, pass);
 });
 
 test('fileop: listen: wrong operation', async (t) => {

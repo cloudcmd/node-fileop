@@ -228,8 +228,8 @@ test('client: disconnect', async (t) => {
     });
 });
 
-test('client: auth', async (t) => {
-    const authCheck = (username, password, accept, reject) => {
+test('client: auth: reject', async (t) => {
+    const authCheck = (accept, reject) => () => {
         reject();
     };
     
@@ -252,8 +252,8 @@ test('client: auth', async (t) => {
 });
 
 test('client: options', async (t) => {
-    const authCheck = (username, password, accept, reject) => {
-        reject();
+    const authCheck = (accept) => () => {
+       accept();
     };
     
     const prefix = '/hello';
@@ -268,12 +268,12 @@ test('client: options', async (t) => {
     const destroy = getDestroy(operator);
     
     operator.emit('auth');
-    operator.on('reject', () => {
+    operator.on('accept', () => {
         after();
         done();
         destroy();
         
-        t.pass('shoud reject');
+        t.pass('shoud accept');
         t.end();
     });
 });
