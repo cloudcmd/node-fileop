@@ -1,0 +1,18 @@
+{
+  "env": {
+    "test": {
+      "plugins": [
+        "dynamic-import-node"
+      ]
+    },
+    "client": {
+      "presets": [
+        "env"
+      ],
+      "plugins": [
+        "dynamic-import-webpack"
+      ]
+    }
+  }
+}
+

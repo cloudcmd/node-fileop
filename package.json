@@ -1,0 +1,86 @@
+{
+  "name": "fileop",
+  "version": "1.0.0",
+  "description": "file operations emitter middleware",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "tape 'test/**/*.js'",
+    "coverage": "nyc npm test",
+    "report": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "redrun lint:*",
+    "lint:client": "eslint --env browser --rule 'no-console:0' client",
+    "lint:server": "eslint server",
+    "lint:test": "eslint test",
+    "build": "redrun rmdir build:*",
+    "build-progress": "BABEL_ENV=client webpack --progress",
+    "build:client": "npm run build-progress -- --mode production",
+    "build:client:dev": "NODE_ENV=development npm run build-progress -- --mode development",
+    "watcher": "nodemon -w client -w server -w test --exec",
+    "watch:test": "npm run watcher -- 'npm test'",
+    "watch:coverage": "npm run watcher -- 'npm run coverage'",
+    "watch:lint": "npm run watcher -- 'npm run lint'",
+    "watch:client": "redrun build:client -- --watch",
+    "watch:client:dev": "redrun build:client:dev -- --watch",
+    "wisdom": "npm run build",
+    "rmdir": "rimraf dist dist-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coderaiser/node-fileop.git"
+  },
+  "keywords": [
+    "file",
+    "copy",
+    "pack",
+    "unpack",
+    "remove",
+    "emitter",
+    "middleware"
+  ],
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coderaiser/node-fileop/issues"
+  },
+  "homepage": "https://github.com/coderaiser/node-fileop",
+  "dependencies": {
+    "copymitter": "^2.0.0",
+    "currify": "^2.0.4",
+    "fullstore": "^1.1.0",
+    "inly": "^1.2.4",
+    "jaguar": "^3.1.1",
+    "mellow": "^2.0.0",
+    "onezip": "^1.0.13",
+    "remy": "^2.0.1",
+    "wraptile": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
+    "babel-preset-env": "^1.6.0",
+    "clear-module": "^2.1.0",
+    "coveralls": "^3.0.0",
+    "emitify": "^3.1.0",
+    "es6-promisify": "^6.0.0",
+    "eslint": "^4.1.1",
+    "express": "^4.14.0",
+    "mock-require": "^3.0.1",
+    "node-fetch": "^2.1.2",
+    "nodemon": "^1.17.2",
+    "nyc": "^11.0.2",
+    "redrun": "^6.0.0",
+    "rimraf": "^2.6.1",
+    "socket.io": "^2.0.1",
+    "socket.io-client": "^2.0.1",
+    "tape": "^4.6.0",
+    "try-to-catch": "^1.0.2",
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}
