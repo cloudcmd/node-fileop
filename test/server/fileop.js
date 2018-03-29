@@ -49,7 +49,7 @@ test('fileop: options: authCheck: reject', async (t) => {
 });
 
 test('fileop: options: authCheck: accept', async (t) => {
-    const authCheck = (username, password, accept, reject) => {
+    const authCheck = (username, password, accept) => {
         accept();
     };
     

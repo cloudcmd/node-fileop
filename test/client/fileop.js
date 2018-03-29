@@ -4,7 +4,6 @@ process.env.NODE_ENV = 'test';
 
 require('babel-register');
 
-const {EventEmitter} = require('events');
 const test = require('tape');
 const {promisify} = require('es6-promisify');
 const socketIO = require('socket.io-client');
@@ -118,7 +117,6 @@ test('client: zip: error', async (t) => {
     
     const operator = await fileop();
     const op = await operator.zip(from, to, files);
-    const {socket} = op;
     const destroy = getDestroy(op);
     
     op.on('error', (e) => {
@@ -134,9 +132,6 @@ test('client: zip: error', async (t) => {
 test('client: extract: error', async (t) => {
     const from = '/hello';
     const to = '/world';
-    const files = [
-        'abc'
-    ];
     
     const {done, origin} = await connect();
     
@@ -144,7 +139,6 @@ test('client: extract: error', async (t) => {
     
     const operator = await fileop();
     const op = await operator.extract(from, to);
-    const {socket} = op;
     const destroy = getDestroy(op);
     
     op.on('error', (e) => {
@@ -161,10 +155,6 @@ test('client: extract: error', async (t) => {
 test('client: dynamic load socket.io', async (t) => {
     const from = '/hello';
     const to = '/world';
-    const files = [
-        'abc'
-    ];
-    
     const {done, origin} = await connect();
     
     const io = null;
@@ -172,7 +162,6 @@ test('client: dynamic load socket.io', async (t) => {
     
     const operator = await fileop();
     const op = await operator.extract(from, to);
-    const {socket} = op;
     const destroy = getDestroy(op);
     
     op.on('error', (e) => {
@@ -240,12 +229,6 @@ test('client: disconnect', async (t) => {
 });
 
 test('client: auth', async (t) => {
-    const from = '/hello';
-    const to = '/world';
-    const files = [
-        'abc'
-    ];
-    
     const authCheck = (username, password, accept, reject) => {
         reject();
     };
@@ -269,12 +252,6 @@ test('client: auth', async (t) => {
 });
 
 test('client: options', async (t) => {
-    const from = '/hello';
-    const to = '/world';
-    const files = [
-        'abc'
-    ];
-    
     const authCheck = (username, password, accept, reject) => {
         reject();
     };

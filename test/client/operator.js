@@ -49,7 +49,6 @@ test('client: operator: pause', (t) => {
     const socket = new EventEmitter();
     const op = operator(id, socket);
     
-    const errorEvent = `${id}#error`;
     const pauseEvent = `${id}#pause`;
     
     socket.on(pauseEvent, () => {
