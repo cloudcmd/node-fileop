@@ -1,20 +1,17 @@
 'use strict';
 
-/* global io */
-
 const Emitify = require('emitify/legacy');
 const getHost = require('./get-host');
 const loadSocket = require('./load-socket');
 const operator = require('./operator');
 
 const {promisify} = require('es6-promisify');
-const wrap = (fn, ...args) => () => fn(...args);
 
 module.exports = (options, callback) => {
     if (!callback) {
         callback = options;
         options = {}
-    };
+    }
     
     const prefix = options.prefix || '/fileop';
     const socketPrefix = options.socketPrefix || '';
