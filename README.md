@@ -1,11 +1,11 @@
 # Fileop [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
-File copy emitter middleware based on [socket.io](http://socket.io "Socket.io") and [copymitter](https://github.com/coderaiser/node-copymitter "Copymitter").
+File operations emitter middleware.
 
 ## Install
 
 ```
-npm i fileop --save
+npm i fileop
 ```
 
 ## Client
@@ -109,6 +109,13 @@ fileop.listen(socket, {
 ## License
 
 MIT
+
+## Related
+
+- [Spero](https://github.com/coderaiser/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
+- [Remedy](https://github.com/coderaiser/node-remedy "Remedy") - emitting middleware for file removing
+- [Ishtar](https://github.com/coderaiser/node-ishtar "Ishtar") - pack and extract .tar.gz archives middleware
+- [Omnes](https://github.com/cloudcmd/node-omnes "Omnes") - extract zip, gz, tar, tar.gz, tgz archives middleware
 
 [NPMIMGURL]:                https://img.shields.io/npm/v/fileop.svg?style=flat
 [DependencyStatusIMGURL]:   https://img.shields.io/gemnasium/coderaiser/node-fileop.svg?style=flat
