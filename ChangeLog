@@ -1,3 +1,9 @@
+2018.03.29, v1.0.2
+
+fix:
+- (fileop) authCheck -> auth
+
+
 2018.03.29, v1.0.1
 
 fix:
