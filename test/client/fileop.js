@@ -229,11 +229,11 @@ test('client: disconnect', async (t) => {
 });
 
 test('client: auth: reject', async (t) => {
-    const authCheck = (accept, reject) => () => {
+    const auth = (accept, reject) => () => {
         reject();
     };
     
-    const {done, origin} = await connect({authCheck});
+    const {done, origin} = await connect({auth});
     
     before({origin});
     
@@ -252,14 +252,14 @@ test('client: auth: reject', async (t) => {
 });
 
 test('client: options', async (t) => {
-    const authCheck = (accept) => () => {
+    const auth = (accept) => () => {
        accept();
     };
     
     const prefix = '/hello';
     const {done, origin} = await connect({
         prefix,
-        authCheck,
+        auth,
     });
     
     before({origin});

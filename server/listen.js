@@ -17,27 +17,27 @@ const inc = (a) => a(a() + 1);
 
 module.exports = listen;
 
-function check(authCheck) {
-    if (authCheck && typeof authCheck !== 'function')
-        throw Error('authCheck should be function!');
+function check(auth) {
+    if (auth && typeof auth !== 'function')
+        throw Error('auth should be function!');
 }
 
 function listen(socket, options) {
     options = options || {};
     
-    const authCheck = options.authCheck;
+    const auth = options.auth;
     const prefix = options.prefix || '/fileop';
     const root = options.root || '/';
     
-    check(authCheck);
+    check(auth);
     
     socket.of(prefix)
         .on('connection', (socket) => {
-            if (!authCheck)
+            if (!auth)
                 return connection(root, socket);
             
             const reject = () => socket.emit('reject');
-            socket.on('auth', authCheck(connectionWraped(root, socket), reject));
+            socket.on('auth', auth(connectionWraped(root, socket), reject));
         });
 }
 

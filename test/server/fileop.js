@@ -25,20 +25,20 @@ test('fileop: options: empty object', async (t) => {
     t.end();
 });
 
-test('fileop: options: authCheck not function', async (t) => {
-    const authCheck = {};
-    const [error] = await tryToCatch(connect, {authCheck});
+test('fileop: options: auth not function', async (t) => {
+    const auth = {};
+    const [error] = await tryToCatch(connect, {auth});
     
-    t.equal(error.message, 'authCheck should be function!', 'should throw when authCheck not function');
+    t.equal(error.message, 'auth should be function!', 'should throw when auth not function');
     t.end();
 });
 
-test('fileop: options: authCheck: reject', async (t) => {
-    const authCheck = (accept, reject) => () => {
+test('fileop: options: auth: reject', async (t) => {
+    const auth = (accept, reject) => () => {
         reject();
     };
     
-    const {socket, done} = await connect({authCheck});
+    const {socket, done} = await connect({auth});
     
     socket.emit('auth');
     socket.on('reject', () => {
@@ -49,12 +49,12 @@ test('fileop: options: authCheck: reject', async (t) => {
     });
 });
 
-test('fileop: options: authCheck: accept', async (t) => {
-    const authCheck = (accept) => () => {
+test('fileop: options: auth: accept', async (t) => {
+    const auth = (accept) => () => {
         accept();
     };
     
-    const {socket, done} = await connect({authCheck});
+    const {socket, done} = await connect({auth});
     
     socket.emit('auth', 'hello', 'world');
     
@@ -66,11 +66,11 @@ test('fileop: options: authCheck: accept', async (t) => {
     });
 });
 
-test('fileop: options: authCheck: accept', async (t) => {
+test('fileop: options: auth: accept', async (t) => {
     const user = 'bill';
     const pass = 'world';
     
-    const authCheck = currify((accept, reject, username, password) => {
+    const auth = currify((accept, reject, username, password) => {
         done();
         
         t.equal(username, user, 'should pass username');
@@ -78,7 +78,7 @@ test('fileop: options: authCheck: accept', async (t) => {
         t.end();
     });
     
-    const {socket, done} = await connect({authCheck});
+    const {socket, done} = await connect({auth});
     
     socket.emit('auth', user, pass);
 });
