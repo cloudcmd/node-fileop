@@ -5,7 +5,7 @@ File operations emitter middleware.
 ## Install
 
 ```
-npm i fileop
+npm i @cloudcmd/fileop
 ```
 
 ## Client
@@ -113,17 +113,17 @@ MIT
 
 ## Related
 
-- [Spero](https://github.com/coderaiser/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
-- [Remedy](https://github.com/coderaiser/node-remedy "Remedy") - emitting middleware for file removing
-- [Ishtar](https://github.com/coderaiser/node-ishtar "Ishtar") - pack and extract .tar.gz archives middleware
+- [Spero](https://github.com/cloudcmd/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
+- [Remedy](https://github.com/cloudcmd/node-remedy "Remedy") - emitting middleware for file removing
+- [Ishtar](https://github.com/cloudcmd/node-ishtar "Ishtar") - pack and extract .tar.gz archives middleware
 - [Omnes](https://github.com/cloudcmd/node-omnes "Omnes") - extract zip, gz, tar, tar.gz, tgz archives middleware
 
-[NPMIMGURL]:                https://img.shields.io/npm/v/fileop.svg?style=flat
-[DependencyStatusIMGURL]:   https://img.shields.io/gemnasium/coderaiser/node-fileop.svg?style=flat
+[NPMIMGURL]:                https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
+[DependencyStatusIMGURL]:   https://img.shields.io/gemnasium/cloudcmd/node-fileop.svg?style=flat
 [LicenseIMGURL]:            https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[BuildStatusIMGURL]:        https://img.shields.io/travis/coderaiser/node-fileop/master.svg?style=flat
-[NPMURL]:                   https://npmjs.org/package/fileop "npm"
-[DependencyStatusURL]:      https://gemnasium.com/coderaiser/node-fileop "Dependency Status"
+[BuildStatusIMGURL]:        https://img.shields.io/travis/cloudcmd/node-fileop/master.svg?style=flat
+[NPMURL]:                   https://npmjs.org/package/@cloudcmd/fileop "npm"
+[DependencyStatusURL]:      https://gemnasium.com/cloudcmd/node-fileop "Dependency Status"
 [LicenseURL]:               https://tldrlegal.com/license/mit-license "MIT License"
-[BuildStatusURL]:           https://travis-ci.org/coderaiser/node-fileop  "Build Status"
+[BuildStatusURL]:           https://travis-ci.org/cloudcmd/node-fileop  "Build Status"
 

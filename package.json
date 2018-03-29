@@ -1,5 +1,5 @@
 {
-  "name": "fileop",
+  "name": "@cloudcmd/fileop",
   "version": "1.0.0",
   "description": "file operations emitter middleware",
   "main": "server/index.js",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/coderaiser/node-fileop.git"
+    "url": "git://github.com/cloudcmd/node-fileop.git"
   },
   "keywords": [
     "file",
@@ -37,12 +37,12 @@
     "emitter",
     "middleware"
   ],
-  "author": "coderaiser <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
+  "author": "cloudcmd <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/coderaiser/node-fileop/issues"
+    "url": "https://github.com/cloudcmd/node-fileop/issues"
   },
-  "homepage": "https://github.com/coderaiser/node-fileop",
+  "homepage": "https://github.com/cloudcmd/node-fileop",
   "dependencies": {
     "copymitter": "^2.0.0",
     "currify": "^2.0.4",
