@@ -113,10 +113,11 @@ MIT
 
 ## Related
 
-- [Spero](https://github.com/cloudcmd/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
-- [Remedy](https://github.com/cloudcmd/node-remedy "Remedy") - emitting middleware for file removing
-- [Ishtar](https://github.com/cloudcmd/node-ishtar "Ishtar") - pack and extract .tar.gz archives middleware
+- [Spero](https://github.com/coderaiser/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
+- [Remedy](https://github.com/coderaiser/node-remedy "Remedy") - emitting middleware for file removing
+- [Ishtar](https://github.com/coderaiser/node-ishtar "Ishtar") - pack and extract .tar.gz archives middleware
 - [Omnes](https://github.com/cloudcmd/node-omnes "Omnes") - extract zip, gz, tar, tar.gz, tgz archives middleware
+- [Salam](https://github.com/coderaiser/node-salam  "Salam") - pack and extract zip archives middleware
 
 [NPMIMGURL]:                https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
 [DependencyStatusIMGURL]:   https://img.shields.io/gemnasium/cloudcmd/node-fileop.svg?style=flat
