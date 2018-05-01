@@ -12,6 +12,7 @@ const connect = require('../lib/connect');
 const fileop = promisify(require('../../client/fileop'));
 
 const getDestroy = ({socket}) => socket.destroy.bind(socket);
+const getDisconnect = ({socket}) => socket.disconnect.bind(socket);
 
 function before({origin, host, io = socketIO}) {
     global.window = {
@@ -211,17 +212,16 @@ test('client: disconnect', async (t) => {
     
     const operator = await fileop();
     const op = await operator.zip(from, to, files);
-    const destroy = getDestroy(op);
-    
-    done();
+    const disconnect = getDisconnect(op);
     
     op.on('error', (e) => {
         t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+        disconnect();
     });
     
     operator.on('disconnect', () => {
         after();
-        destroy();
+        done();
         t.pass('should disconnect');
         
         t.end();
