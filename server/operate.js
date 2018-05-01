@@ -51,7 +51,8 @@ function operate(type, id, socket, from, to, files) {
     });
     
     operator.on('error', (error, name) => {
-        const msg = error.code + ': ' + error.path;
+        const msg = `${error.code}: ${error.path}`;
+        
         const rmListeners = () => {
             socket.removeListener(`${id}#continue`, onContinue);
             socket.removeListener(`${id}#abort`, onAbort);
