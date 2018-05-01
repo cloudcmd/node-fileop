@@ -113,7 +113,7 @@ MIT
 
 ## Related
 
-- [Spero](https://github.com/coderaiser/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
+- [Spero](https://github.com/cloudcmd/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
 - [Remedy](https://github.com/coderaiser/node-remedy "Remedy") - emitting middleware for file removing
 - [Ishtar](https://github.com/coderaiser/node-ishtar "Ishtar") - pack and extract .tar.gz archives middleware
 - [Omnes](https://github.com/cloudcmd/node-omnes "Omnes") - extract zip, gz, tar, tar.gz, tgz archives middleware
