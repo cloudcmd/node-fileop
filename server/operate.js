@@ -5,22 +5,28 @@ const currify = require('currify/legacy');
 const remy = require('remy');
 const copymitter = require('copymitter');
 const mellow = require('mellow');
+const isString = (a) => typeof a === 'string';
 
 const isRootWin32 = currify(require('./is-root-win32'));
 
 const getPaths = (from, to) => {
-    if (typeof to !== 'string')
+    if (!isString(to))
         return [from];
     
     return [from, to];
 };
 
-const getRootError = (type) => {
-    return `Could not ${type} from/to root on windows!`;
+const getRootError = (type) => `Could not ${type} from/to root on windows!`;
+const pathToWin = (path, root) => {
+    if (!isString(path))
+        return path;
+    
+    return mellow.pathToWin(path, root);
 };
 
 module.exports = currify((type, id, root, socket, from, to, files) => {
-    from = mellow.pathToWin(from, root);
+    from = pathToWin(from, root);
+    to = pathToWin(to, root);
     
     if (getPaths(from, to).some(isRootWin32(root)))
         socket.emit(`${id}#error`,  getRootError(type));
@@ -52,7 +58,6 @@ function operate(type, id, socket, from, to, files) {
     
     operator.on('error', (error, name) => {
         const msg = `${error.code}: ${error.path}`;
-        
         const rmListeners = () => {
             socket.removeListener(`${id}#continue`, onContinue);
             socket.removeListener(`${id}#abort`, onAbort);
