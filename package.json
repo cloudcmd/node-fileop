@@ -46,6 +46,7 @@
   "dependencies": {
     "copymitter": "^3.0.0",
     "currify": "^2.0.4",
+    "express": "^4.16.3",
     "fullstore": "^1.1.0",
     "inly": "^1.2.4",
     "jaguar": "^3.1.1",
@@ -67,7 +68,6 @@
     "es6-promisify": "^6.0.0",
     "eslint": "^4.1.1",
     "eslint-plugin-node": "^6.0.1",
-    "express": "^4.14.0",
     "mock-require": "^3.0.1",
     "node-fetch": "^2.1.2",
     "nodemon": "^1.17.2",
