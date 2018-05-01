@@ -85,3 +85,15 @@ test('client: operator: file', (t) => {
     socket.emit(`${id}#file`, 'hello');
 });
 
+test('client: operator: end', (t) => {
+    const id = 1;
+    const socket = new EventEmitter();
+    const op = operator(id, socket);
+    
+    op.on('end', () => {
+        t.end();
+    });
+    
+    socket.emit(`${id}#end`);
+});
+
