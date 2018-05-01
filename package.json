@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/cloudcmd/node-fileop",
   "dependencies": {
-    "copymitter": "^2.0.0",
+    "copymitter": "^3.0.0",
     "currify": "^2.0.4",
     "fullstore": "^1.1.0",
     "inly": "^1.2.4",
