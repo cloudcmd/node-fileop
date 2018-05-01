@@ -1,6 +1,6 @@
 {
   "name": "@cloudcmd/fileop",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "file operations emitter middleware",
   "main": "server/index.js",
   "scripts": {
