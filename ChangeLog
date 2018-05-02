@@ -1,3 +1,11 @@
+2018.05.02, v1.0.6
+
+feature:
+- (package) jaguar v4.0.0
+- (package) onezip v2.0.0
+- (package) inly v2.0.0
+
+
 2018.05.01, v1.0.5
 
 fix:
