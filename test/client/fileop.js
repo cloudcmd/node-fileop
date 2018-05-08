@@ -51,7 +51,32 @@ test('client: copy: error', async (t) => {
         after();
         destroy();
         
-        t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+        t.equal(e, 'ENOENT: /hello', 'should equal');
+        t.end();
+    });
+});
+
+test('client: move: error', async (t) => {
+    const from = '/hello';
+    const to = '/world';
+    const files = [
+        'abc'
+    ];
+    
+    const {done, origin} = await connect();
+    
+    before({origin});
+    
+    const operator = await fileop();
+    const op = await operator.move(from, to, files);
+    const destroy = getDestroy(op);
+    
+    op.on('error', (e) => {
+        done();
+        after();
+        destroy();
+        
+        t.equal(e, 'ENOENT: /hello', 'should equal');
         t.end();
     });
 });

@@ -47,6 +47,10 @@ class Fileop extends Emitify {
         return this.operate('copy', from, to, files);
     }
     
+    move(from, to, files) {
+        return this.operate('move', from, to, files);
+    }
+    
     zip(from, to, files) {
         return this.operate('zip', from, to, files);
     }

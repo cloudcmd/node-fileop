@@ -4,6 +4,7 @@ const currify = require('currify/legacy');
 
 const remy = require('remy');
 const copymitter = require('copymitter');
+const moveFiles = require('@cloudcmd/move-files');
 const mellow = require('mellow');
 const isString = (a) => typeof a === 'string';
 
@@ -37,6 +38,9 @@ module.exports = currify((type, id, root, socket, from, to, files) => {
 function getOperation(type) {
     if (type === 'remove')
         return remy;
+    
+    if (type === 'move')
+        return moveFiles;
     
     return copymitter;
 }

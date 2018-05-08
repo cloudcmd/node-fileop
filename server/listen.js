@@ -67,6 +67,9 @@ function getOperation(name) {
     if (name === 'copy')
         return operate('copy')
     
+    if (name === 'move')
+        return operate('move')
+    
     if (name === 'tar')
         return pack('tar')
     
