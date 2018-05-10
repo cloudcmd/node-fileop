@@ -121,11 +121,11 @@ MIT
 - [Salam](https://github.com/coderaiser/node-salam  "Salam") - pack and extract zip archives middleware
 
 [NPMIMGURL]:                https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
-[DependencyStatusIMGURL]:   https://img.shields.io/gemnasium/cloudcmd/node-fileop.svg?style=flat
+[DependencyStatusIMGURL]:   https://img.shields.io/david/cloudcmd/node-fileop.svg?style=flat
 [LicenseIMGURL]:            https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
 [BuildStatusIMGURL]:        https://img.shields.io/travis/cloudcmd/node-fileop/master.svg?style=flat
 [NPMURL]:                   https://npmjs.org/package/@cloudcmd/fileop "npm"
-[DependencyStatusURL]:      https://gemnasium.com/cloudcmd/node-fileop "Dependency Status"
+[DependencyStatusURL]:      https://david-dm.org/cloudcmd/node-fileop "Dependency Status"
 [LicenseURL]:               https://tldrlegal.com/license/mit-license "MIT License"
 [BuildStatusURL]:           https://travis-ci.org/cloudcmd/node-fileop  "Build Status"
 
