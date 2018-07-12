@@ -63,7 +63,7 @@
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-preset-env": "^1.6.0",
-    "clear-module": "^2.1.0",
+    "clear-module": "^3.0.0",
     "coveralls": "^3.0.0",
     "emitify": "^3.1.0",
     "es6-promisify": "^6.0.0",
