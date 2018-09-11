@@ -7,7 +7,7 @@
     },
     "client": {
       "presets": [
-        "env"
+        "@babel/preset-env"
       ],
       "plugins": [
         "dynamic-import-webpack"
@@ -15,4 +15,3 @@
     }
   }
 }
-

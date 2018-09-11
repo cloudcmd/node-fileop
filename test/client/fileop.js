@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-require('babel-register');
+require('@babel/register');
 
 const test = require('tape');
 const {promisify} = require('es6-promisify');
