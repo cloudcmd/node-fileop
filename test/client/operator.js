@@ -97,3 +97,15 @@ test('client: operator: end', (t) => {
     socket.emit(`${id}#end`);
 });
 
+test('client: operator: end: off listeners', (t) => {
+    const id = 1;
+    const socket = new EventEmitter();
+    const op = operator(id, socket);
+    
+    op.on('end', () => {
+        t.deepEqual(socket._events, {}, 'should off listeners');
+        t.end();
+    });
+    
+    socket.emit(`${id}#end`);
+});
