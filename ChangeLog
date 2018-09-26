@@ -1,3 +1,12 @@
+2018.09.26, v2.0.0
+
+feature:
+- (package) drop support of node < 8
+- (package) @cloudcmd/move-files v2.0.1
+- (package) copymitter v4.0.1
+- (package) babel-eslint v10.0.0
+
+
 2018.09.25, v1.1.1
 
 fix:
