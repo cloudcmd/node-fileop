@@ -1,6 +1,6 @@
 'use strict';
 
-const currify = require('currify/legacy');
+const currify = require('currify');
 const onezip = require('onezip');
 const jaguar = require('jaguar');
 const mellow = require('mellow');

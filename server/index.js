@@ -3,7 +3,7 @@
 const DIR_ROOT = __dirname + '/..';
 const path = require('path');
 
-const currify = require('currify/legacy');
+const currify = require('currify');
 const express = require('express');
 const Router = express.Router;
 

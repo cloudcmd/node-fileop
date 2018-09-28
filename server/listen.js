@@ -1,7 +1,7 @@
 'use strict';
 
-const currify = require('currify/legacy');
-const wraptile = require('wraptile/legacy');
+const currify = require('currify');
+const wraptile = require('wraptile');
 const fullstore = require('fullstore');
 
 const operate = require('./operate');
