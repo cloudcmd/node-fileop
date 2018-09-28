@@ -75,7 +75,7 @@
     "node-fetch": "^2.1.2",
     "nodemon": "^1.17.2",
     "nyc": "^13.0.1",
-    "redrun": "^6.0.0",
+    "redrun": "^7.0.0",
     "rimraf": "^2.6.1",
     "socket.io": "^2.0.1",
     "socket.io-client": "^2.0.1",
