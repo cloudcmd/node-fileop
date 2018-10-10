@@ -46,7 +46,7 @@
   "dependencies": {
     "@cloudcmd/move-files": "^2.0.1",
     "copymitter": "^4.0.1",
-    "currify": "^2.0.4",
+    "currify": "^3.0.0",
     "express": "^4.16.3",
     "fullstore": "^1.1.0",
     "inly": "^3.0.0",
