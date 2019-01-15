@@ -1,6 +1,6 @@
 'use strict';
 
-const test = require('tape');
+const test = require('supertape');
 const isRootPath= '../../server/is-root-win32';
 
 test('isRootWin32', (t) => {

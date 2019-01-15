@@ -3,7 +3,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const test = require('tape');
+const test = require('supertape');
 const fetch = require('node-fetch');
 
 const connectPath = '../lib/connect';

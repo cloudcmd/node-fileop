@@ -1,6 +1,6 @@
 'use strict';
 
-const test = require('tape');
+const test = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
 
@@ -31,7 +31,7 @@ test('operate: extract: error', async (t) => {
     
     const from = '/hello/abc';
     const to = '/world/abc';
-
+    
     socket.emit('operation', 'extract', from, to);
     socket.on('id', (id) => {
         socket.on(`${id}#error`, (e) => {

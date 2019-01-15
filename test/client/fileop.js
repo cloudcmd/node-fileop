@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 
 require('@babel/register');
 
-const test = require('tape');
+const test = require('supertape');
 const {promisify} = require('es6-promisify');
 const socketIO = require('socket.io-client');
 
