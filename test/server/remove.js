@@ -4,9 +4,7 @@ const test = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
 
-const {
-    errorEmitter,
-} = require('../lib/emitters');
+const {errorEmitter} = require('../lib/emitters');
 
 const clearFileop = require('../lib/clear');
 
@@ -19,7 +17,7 @@ test('operate: remove: error', async (t) => {
     
     const from = '/hello';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(removePath, errorEmitter);

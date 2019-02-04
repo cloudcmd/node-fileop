@@ -4,9 +4,7 @@ const test = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
 
-const {
-    errorEmitter,
-} = require('../lib/emitters');
+const {errorEmitter} = require('../lib/emitters');
 
 const clearFileop = require('../lib/clear');
 
@@ -21,11 +19,11 @@ test('operate: tar: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(tarPath, {
-        pack: errorEmitter
+        pack: errorEmitter,
     });
     
     const connect = require(connectPath);
@@ -54,12 +52,12 @@ test('operate: tar: error: root', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     const truth = () => true;
     Object.defineProperty(truth, 'length', {
-        value: 2
+        value: 2,
     });
     
     const isRoot = require(isRootPath);

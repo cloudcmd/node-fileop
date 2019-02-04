@@ -65,13 +65,13 @@ function getOperation(name) {
         return extract;
     
     if (name === 'copy')
-        return operate('copy')
+        return operate('copy');
     
     if (name === 'move')
-        return operate('move')
+        return operate('move');
     
     if (name === 'tar')
-        return pack('tar')
+        return pack('tar');
     
     if (name === 'zip')
         return pack('zip');

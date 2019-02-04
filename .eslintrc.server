@@ -1,6 +1,5 @@
 {
     "extends": [
-        ".eslintrc",
         "plugin:node/recommended"
     ],
     "plugins": [

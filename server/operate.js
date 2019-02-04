@@ -72,7 +72,7 @@ function operate(type, id, socket, from, to, files) {
             rmListeners();
         };
         
-       const onContinue  = () => {
+        const onContinue  = () => {
             operator.continue();
             rmListeners();
         };

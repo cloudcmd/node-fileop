@@ -26,7 +26,7 @@ function connect(config, callback) {
         const {port} = server.address();
         const prefix = getPrefix(options) || '/fileop';
         
-        const host = `${ip}:${port}`
+        const host = `${ip}:${port}`;
         const origin = `http://${host}`;
         const url = `${origin}${prefix}`;
         const socket = ioClient(url);

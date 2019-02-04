@@ -24,7 +24,7 @@ test('operate: copy: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(copyPath, errorEmitter);
@@ -52,13 +52,13 @@ test('operate: copy: file', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(copyPath, fileEmitter);
     const connect = require(connectPath);
     
-    const root = '/'
+    const root = '/';
     const {socket, done} = await connect({root});
     
     socket.emit('operation', 'copy', from, to, names);
@@ -79,13 +79,13 @@ test('operate: copy: progress', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(copyPath, progressEmitter);
     const connect = require(connectPath);
     
-    const root = '/'
+    const root = '/';
     const {socket, done} = await connect({root});
     
     socket.emit('operation', 'copy', from, to, names);
@@ -106,13 +106,13 @@ test('operate: copy: end', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(copyPath, endEmitter);
     const connect = require(connectPath);
     
-    const root = '/'
+    const root = '/';
     const {socket, done} = await connect({root});
     
     socket.emit('operation', 'copy', from, to, names);
@@ -133,13 +133,13 @@ test('operate: copy: abort', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     
-    const root = '/'
+    const root = '/';
     const {socket, done} = await connect({root});
     
     socket.emit('operation', 'copy', from, to, names);
@@ -165,7 +165,7 @@ test('operate: copy: continue', async (t) => {
     const from = '/';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(copyPath, errorEmitter);
@@ -196,12 +196,12 @@ test('operate: copy: error: root', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     const truth = () => true;
     Object.defineProperty(truth, 'length', {
-        value: 2
+        value: 2,
     });
     
     const isRoot = require(isRootPath);

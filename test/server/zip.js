@@ -23,11 +23,11 @@ test('operate: zip: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(zipPath, {
-        pack: errorEmitter
+        pack: errorEmitter,
     });
     
     const connect = require(connectPath);
@@ -55,11 +55,11 @@ test('operate: zip: progress', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(zipPath, {
-        pack: progressEmitter
+        pack: progressEmitter,
     });
     
     const connect = require(connectPath);
@@ -85,11 +85,11 @@ test('operate: zip: file', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(zipPath, {
-        pack: fileEmitter
+        pack: fileEmitter,
     });
     
     const connect = require(connectPath);
@@ -115,11 +115,11 @@ test('operate: zip: end', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(zipPath, {
-        pack: endEmitter
+        pack: endEmitter,
     });
     
     const connect = require(connectPath);
@@ -145,11 +145,11 @@ test('operate: zip: abort', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     mock(zipPath, {
-        pack: errorEmitter
+        pack: errorEmitter,
     });
     
     const connect = require(connectPath);

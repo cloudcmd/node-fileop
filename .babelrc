@@ -1,7 +1,8 @@
 {
   "plugins": [
       "@babel/plugin-proposal-private-methods",
-      "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties",
+      "dynamic-import-node"
   ],
   "env": {
     "test": {

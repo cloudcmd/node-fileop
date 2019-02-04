@@ -3,6 +3,7 @@
 const Emitify = require('emitify/legacy');
 const getHost = require('./get-host');
 const loadSocket = require('./load-socket');
+/*eslint no-unused-vars: 0 */
 const operator = require('./operator');
 
 const {promisify} = require('es6-promisify');
@@ -10,7 +11,7 @@ const {promisify} = require('es6-promisify');
 module.exports = (options, callback) => {
     if (!callback) {
         callback = options;
-        options = {}
+        options = {};
     }
     
     const prefix = options.prefix || '/fileop';
@@ -21,9 +22,9 @@ module.exports = (options, callback) => {
     loadSocket((io) => {
         const fileop = new Fileop(io, prefix, socketPath);
         
-        callback(null, fileop)
+        callback(null, fileop);
     });
-}
+};
 
 class Fileop extends Emitify {
     constructor(io, room, socketPath) {
@@ -67,6 +68,7 @@ class Fileop extends Emitify {
         return this.operate('remove', from, files);
     }
     
+    /*eslint no-undef: 0 */
     #operate(name, from, to, files, fn = files) {
         const {socket} = this;
         
@@ -76,6 +78,7 @@ class Fileop extends Emitify {
         });
     }
     
+    /*eslint no-undef: 0 */
     #setListeners(socket) {
         this.on('auth', (username, password) => {
             socket.emit('auth', username, password);

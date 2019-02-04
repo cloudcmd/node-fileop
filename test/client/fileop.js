@@ -16,7 +16,7 @@ const getDisconnect = ({socket}) => socket.disconnect.bind(socket);
 
 function before({origin, host, io = socketIO}) {
     global.window = {
-        io
+        io,
     };
     global.location = {
         origin,
@@ -35,7 +35,7 @@ test('client: copy: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const files = [
-        'abc'
+        'abc',
     ];
     
     const {done, origin} = await connect();
@@ -60,7 +60,7 @@ test('client: move: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const files = [
-        'abc'
+        'abc',
     ];
     
     const {done, origin} = await connect();
@@ -84,7 +84,7 @@ test('client: move: error', async (t) => {
 test('client: remove: error', async (t) => {
     const from = '/hello';
     const files = [
-        'abc'
+        'abc',
     ];
     
     const {done, origin} = await connect();
@@ -109,7 +109,7 @@ test('client: tar: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const files = [
-        'abc'
+        'abc',
     ];
     
     const {done, origin} = await connect();
@@ -134,7 +134,7 @@ test('client: zip: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const files = [
-        'abc'
+        'abc',
     ];
     
     const {done, origin} = await connect();
@@ -227,7 +227,7 @@ test('client: disconnect', async (t) => {
     const from = '/hello';
     const to = '/world';
     const files = [
-        'abc'
+        'abc',
     ];
     
     const {done, origin} = await connect();
@@ -278,7 +278,7 @@ test('client: auth: reject', async (t) => {
 
 test('client: options', async (t) => {
     const auth = (accept) => () => {
-       accept();
+        accept();
     };
     
     const prefix = '/hello';

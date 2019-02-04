@@ -19,7 +19,7 @@ module.exports = (options) => {
     
     router.route(prefix + '/*')
         .get(fileopFn(prefix))
-        .get(staticFn)
+        .get(staticFn);
     
     return router;
 };

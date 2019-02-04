@@ -6,5 +6,5 @@ module.exports = (path, root) => {
     const isConfig = root === '/';
     
     return isWin32 && isRoot && isConfig;
-}
+};
 

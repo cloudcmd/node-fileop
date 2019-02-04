@@ -50,7 +50,7 @@ test('operate: extract: progress', async (t) => {
     
     mock(extractPath, progressEmitter);
     
-    const connect = require(connectPath); 
+    const connect = require(connectPath);
     const {socket, done} = await connect();
      
     const from = '/hello/abc';
@@ -125,12 +125,12 @@ test('operate: extract: error: root', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = [
-        'abc'
+        'abc',
     ];
     
     const truth = () => true;
     Object.defineProperty(truth, 'length', {
-        value: 2
+        value: 2,
     });
     
     const isRoot = require(isRootPath);

@@ -16,7 +16,7 @@ module.exports = (id, root, socket, from, to) => {
         return operate(id, socket, from, to);
     
     socket.emit(`${id}#error`, WIN32_ROOT_MSG);
-}
+};
 
 function operate(id, socket, from, to) {
     const extractor = inly(from, to);
