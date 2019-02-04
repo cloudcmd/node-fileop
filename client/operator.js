@@ -13,40 +13,35 @@ class FileOperator extends Emitify {
         this.socket = socket;
         this.id = id;
         
-        this._onError = this._onError.bind(this);
-        this._onFile = this._onFile.bind(this);
-        this._onProgress = this._onProgress.bind(this);
-        this._onEnd = this._onEnd.bind(this);
-        
-        socket.on(`${id}#error`, this._onError);
-        socket.on(`${id}#file`, this._onFile);
-        socket.on(`${id}#progress`, this._onProgress);
-        socket.on(`${id}#end`, this._onEnd);
+        socket.on(`${id}#error`, this.#onError);
+        socket.on(`${id}#file`, this.#onFile);
+        socket.on(`${id}#progress`, this.#onProgress);
+        socket.on(`${id}#end`, this.#onEnd);
         
         setTimeout(() => {
             socket.emit(`${id}#start`);
         }, 0);
     }
     
-    _onError(error) {
+    #onError = (error) => {
         this.emit('error', error);
     }
     
-    _onFile(name) {
+    #onFile = (name) => {
         this.emit('file', name);
     }
     
-    _onProgress(percent) {
+    #onProgress = (percent) => {
         this.emit('progress', percent);
     }
     
-    _onEnd() {
+    #onEnd = () => {
         const {id, socket} = this;
         
-        socket.off(`${id}#error`, this._onError);
-        socket.off(`${id}#file`, this._onFile);
-        socket.off(`${id}#progress`, this._onProgress);
-        socket.off(`${id}#end`, this._onEnd);
+        socket.off(`${id}#error`, this.#onError);
+        socket.off(`${id}#file`, this.#onFile);
+        socket.off(`${id}#progress`, this.#onProgress);
+        socket.off(`${id}#end`, this.#onEnd);
         
         this.emit('end');
     }

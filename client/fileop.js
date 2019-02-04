@@ -38,8 +38,8 @@ class Fileop extends Emitify {
             path: socketPath,
         });
         
-        this._setListeners(socket);
-        this.operate = promisify(this._operate);
+        this.#setListeners(socket);
+        this.operate = promisify(this.#operate);
         this.socket = socket;
     }
     
@@ -67,7 +67,7 @@ class Fileop extends Emitify {
         return this.operate('remove', from, files);
     }
     
-    _operate(name, from, to, files, fn = files) {
+    #operate(name, from, to, files, fn = files) {
         const {socket} = this;
         
         socket.emit('operation', name, from, to, files);
@@ -76,7 +76,7 @@ class Fileop extends Emitify {
         });
     }
     
-    _setListeners(socket) {
+    #setListeners(socket) {
         this.on('auth', (username, password) => {
             socket.emit('auth', username, password);
         });

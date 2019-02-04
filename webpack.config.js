@@ -12,13 +12,11 @@ const devtool = isDev ? 'eval' : 'source-map';
 const notEmpty = (a) => a;
 const clean = (array) => array.filter(notEmpty);
 
-const rules = clean([
-    !isDev && {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-    }
-]);
+const rules = [{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: 'babel-loader',
+}];
 
 module.exports = {
     devtool,
