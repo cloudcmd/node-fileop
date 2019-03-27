@@ -281,15 +281,15 @@ test('client: options', async (t) => {
         accept();
     };
     
-    const prefix = '/hello';
+    const socketPrefix = '/hello';
     const {done, origin} = await connect({
-        prefix,
+        prefix: socketPrefix,
         auth,
     });
     
     before({origin});
     
-    const operator = await fileop({prefix});
+    const operator = await fileop({socketPrefix});
     const destroy = getDestroy(operator);
     
     operator.emit('auth');
@@ -302,3 +302,4 @@ test('client: options', async (t) => {
         t.end();
     });
 });
+

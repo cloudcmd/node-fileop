@@ -9,8 +9,6 @@ const isDev = env.NODE_ENV === 'development';
 const dist = path.resolve(__dirname, 'dist');
 const distDev = path.resolve(__dirname, 'dist-dev');
 const devtool = isDev ? 'eval' : 'source-map';
-const notEmpty = (a) => a;
-const clean = (array) => array.filter(notEmpty);
 
 const rules = [{
     test: /\.js$/,

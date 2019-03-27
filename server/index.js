@@ -5,7 +5,7 @@ const path = require('path');
 
 const currify = require('currify');
 const express = require('express');
-const Router = express.Router;
+const {Router} = express;
 
 const listen = require('./listen');
 

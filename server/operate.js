@@ -30,7 +30,7 @@ module.exports = currify((type, id, root, socket, from, to, files) => {
     to = pathToWin(to, root);
     
     if (getPaths(from, to).some(isRootWin32(root)))
-        socket.emit(`${id}#error`,  getRootError(type));
+        socket.emit(`${id}#error`, getRootError(type));
     
     operate(type, id, socket, from, to, files);
 });
@@ -72,14 +72,14 @@ function operate(type, id, socket, from, to, files) {
             rmListeners();
         };
         
-        const onContinue  = () => {
+        const onContinue = () => {
             operator.continue();
             rmListeners();
         };
         
         socket.emit(`${id}#error`, msg, name);
         socket.on(`${id}#continue`, onContinue);
-        socket.on(`${id}#abort`,  onAbort);
+        socket.on(`${id}#abort`, onAbort);
     });
     
     operator.on('end', () => {

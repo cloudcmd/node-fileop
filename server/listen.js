@@ -25,7 +25,7 @@ function check(auth) {
 function listen(socket, options) {
     options = options || {};
     
-    const auth = options.auth;
+    const {auth} = options;
     const prefix = options.prefix || '/fileop';
     const root = options.root || '/';
     
@@ -80,6 +80,6 @@ function getOperation(name) {
 }
 
 function _wrongOperation(name, id, root, socket) {
-    socket.emit(`${id}#err`,  `Wrong operation: "${name}"`);
+    socket.emit(`${id}#err`, `Wrong operation: "${name}"`);
 }
 

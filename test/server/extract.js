@@ -52,7 +52,7 @@ test('operate: extract: progress', async (t) => {
     
     const connect = require(connectPath);
     const {socket, done} = await connect();
-     
+    
     const from = '/hello/abc';
     const to = '/world/abc';
     
@@ -151,7 +151,7 @@ test('operate: extract: error: root', async (t) => {
             clear(isRootPath);
             t.end();
         });
-       
+        
         socket.emit(`${id}#start`);
     });
 });
