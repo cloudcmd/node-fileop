@@ -48,9 +48,13 @@ function getOperation(type) {
 function operate(type, id, socket, from, to, files) {
     const operate = getOperation(type);
     const operator = operate(from, to, files);
-    const pause = () => operator.pause();
+    const onPause = () => operator.pause();
+    const onContinue = () => operator.continue();
+    const onAbort = () => operator.abort();
     
-    socket.on(`${id}#pause`, pause);
+    socket.on(`${id}#continue`, onContinue);
+    socket.on(`${id}#abort`, onAbort);
+    socket.on(`${id}#pause`, onPause);
     
     operator.on('file', (name) => {
         socket.emit(`${id}#file`, name);
@@ -62,29 +66,15 @@ function operate(type, id, socket, from, to, files) {
     
     operator.on('error', (error, name) => {
         const msg = `${error.code}: ${error.path}`;
-        const rmListeners = () => {
-            socket.removeListener(`${id}#continue`, onContinue);
-            socket.removeListener(`${id}#abort`, onAbort);
-        };
-        
-        const onAbort = () => {
-            operator.abort();
-            rmListeners();
-        };
-        
-        const onContinue = () => {
-            operator.continue();
-            rmListeners();
-        };
         
         socket.emit(`${id}#error`, msg, name);
-        socket.on(`${id}#continue`, onContinue);
-        socket.on(`${id}#abort`, onAbort);
     });
     
     operator.on('end', () => {
         socket.emit(`${id}#end`);
-        socket.removeListener(`${id}#pause`, pause);
+        socket.removeListener(`${id}#pause`, onPause);
+        socket.removeListener(`${id}#continue`, onContinue);
+        socket.removeListener(`${id}#abort`, onAbort);
     });
 }
 
