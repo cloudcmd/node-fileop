@@ -75,7 +75,7 @@
     "es6-promisify": "^6.0.0",
     "eslint": "^5.1.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-putout": "^1.0.2",
     "mock-require": "^3.0.1",
     "node-fetch": "^2.1.2",
