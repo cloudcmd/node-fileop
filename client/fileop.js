@@ -12,11 +12,13 @@ module.exports = (options, callback) => {
         callback = options;
         options = {};
     }
-    
-    const socketPrefix = options.socketPrefix || '/fileop';
-    const prefix = options.prefix || '';
+
+    const {
+        socketPrefix = '/fileop',
+        prefix = ''
+    } = options;
     const socketPath = `${prefix}/socket.io`;
-    
+
     loadSocket((io) => {
         const fileop = new Fileop(io, socketPrefix, socketPath);
         

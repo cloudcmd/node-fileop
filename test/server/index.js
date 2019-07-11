@@ -40,6 +40,7 @@ test('fileop: static: dev', async (t) => {
     const file = fs.readFileSync(name, 'utf8');
     
     done();
+    /* eslint require-atomic-updates: 0 */
     process.env.NODE_ENV = NODE_ENV;
     clearFileop();
     require(connectPath);

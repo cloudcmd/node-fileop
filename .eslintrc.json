@@ -6,7 +6,8 @@
     "parserOptions": {
         "ecmaVersion": 2019,
         "sourceType": "module",
-        "allowImportExportEverywhere": true
+        "allowImportExportEverywhere": true,
+        "classPrivateMethods": true
     },
     "extends": [
         "plugin:putout/recommended"

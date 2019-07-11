@@ -15,7 +15,9 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = (options) => {
     options = options || {};
     const router = Router();
-    const prefix = options.prefix || '/fileop';
+    const {
+        prefix = '/fileop',
+    } = options;
     
     router.route(prefix + '/*')
         .get(fileopFn(prefix))

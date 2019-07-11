@@ -25,9 +25,11 @@ function check(auth) {
 function listen(socket, options) {
     options = options || {};
     
-    const {auth} = options;
-    const prefix = options.prefix || '/fileop';
-    const root = options.root || '/';
+    const {
+        auth,
+        prefix = '/fileop',
+        root = '/',
+    } = options;
     
     check(auth);
     

@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('supertape');
-const isRootPath= '../../server/is-root-win32';
+const isRootPath = '../../server/is-root-win32';
 
 test('isRootWin32', (t) => {
     const path = '/';
