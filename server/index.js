@@ -4,8 +4,7 @@ const DIR_ROOT = __dirname + '/..';
 const path = require('path');
 
 const currify = require('currify');
-const express = require('express');
-const {Router} = express;
+const {Router} = require('express');
 
 const listen = require('./listen');
 

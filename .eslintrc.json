@@ -4,16 +4,24 @@
     },
     "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 2019,
+        "ecmaVersion": 2020,
         "sourceType": "module",
         "allowImportExportEverywhere": true,
         "classPrivateMethods": true
     },
+    "overrides": [{
+        "files": ["client/**"],
+        "env": {
+            "browser": true
+        }
+    }],
     "extends": [
-        "plugin:putout/recommended"
+        "plugin:putout/recommended",
+        "plugin:node/recommended"
     ],
     "plugins": [
         "putout",
-        "babel"
+        "babel",
+        "node"
     ]
 }
