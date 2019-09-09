@@ -1,6 +1,6 @@
 'use strict';
 
-const Emitify = require('emitify/legacy');
+const Emitify = require('emitify');
 const getHost = require('./get-host');
 const loadSocket = require('./load-socket');
 const operator = require('./operator');

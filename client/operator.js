@@ -1,6 +1,6 @@
 'use strict';
 
-const Emitify = require('emitify/legacy');
+const Emitify = require('emitify');
 
 module.exports = (id, socket) => {
     return new FileOperator(id, socket);
