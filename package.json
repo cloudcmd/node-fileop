@@ -53,7 +53,7 @@
     "mellow": "^2.0.0",
     "onezip": "^3.0.0",
     "remy": "^4.0.0",
-    "wraptile": "^2.0.0"
+    "wraptile": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
