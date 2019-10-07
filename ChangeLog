@@ -1,3 +1,11 @@
+2019.10.07, v3.0.0
+
+feature:
+- (fileop) drop support of node < 10
+- (package) @cloudcmd/move-files v3.0.0
+- (package) copymitter v5.0.0
+
+
 2019.09.19, v2.1.5
 
 feature:
