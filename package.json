@@ -89,7 +89,7 @@
     "webpack-cli": "^3.0.3"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10"
   },
   "publishConfig": {
     "access": "public"
