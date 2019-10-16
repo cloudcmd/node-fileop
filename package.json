@@ -84,7 +84,7 @@
     "socket.io": "^2.0.1",
     "socket.io-client": "^2.0.1",
     "supertape": "^1.1.0",
-    "try-to-catch": "^1.0.2",
+    "try-to-catch": "^2.0.0",
     "webpack": "^4.1.0",
     "webpack-cli": "^3.0.3"
   },
