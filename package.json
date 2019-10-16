@@ -52,7 +52,7 @@
     "jaguar": "^5.0.0",
     "mellow": "^2.0.0",
     "onezip": "^4.0.0",
-    "remy": "^4.0.0",
+    "remy": "^5.0.0",
     "wraptile": "^3.0.0"
   },
   "devDependencies": {
