@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = (fn) => {
+module.exports = async () => {
     const {io} = window;
     
     if (io)
-        return fn(io);
+        return io;
     
-    import('socket.io-client').then(fn);
+    return await import('socket.io-client');
 };
 

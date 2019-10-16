@@ -12,7 +12,7 @@ npm i @cloudcmd/fileop
 
 Could be loaded from url `/fileop/fileop.js`.
 
-### fileop([options, ] callback)
+### fileop([options, ]): Promise
 
 Initialize `operator`.
 
@@ -42,38 +42,39 @@ Supports next types of operations:
 
 ```js
 const prefix = '/fileop';
+const operator = await fileop({
+    prefix,
+});
 
-fileop((error, operator) => {
-    const from = '/';
-    const to = '/tmp';
-    const names = [
-        'bin'
-    ];
-    const progress = (value) => {
-        console.log('progress:', value);
-    };
+const from = '/';
+const to = '/tmp';
+const names = [
+    'bin'
+];
+const progress = (value) => {
+    console.log('progress:', value);
+};
+
+const end = (op) => () => {
+    console.log('end');
+    op.removelistener('progress', progress);
+    op.removelistener('end', end);
+};
+
+const error = (op) => (data) => {
+    const msg = data + '\n continue?';
+    const is = confirm(msg);
     
-    const end = (op) => () => {
-        console.log('end');
-        op.removeListener('progress', progress);
-        op.removeListener('end', end);
-    };
+    if (is)
+        return op.continue();
     
-    const error = (op) => (data) => {
-        const msg = data + '\n Continue?';
-        const is = confirm(msg);
-        
-        if (is)
-            return op.continue();
-        
-        op.abort();
-    };
-    
-    operator.copy(from, to, names).then((op) => {
-        op.on('progress', progress);
-        op.on('end', end(op));
-        op.on('error', error(op));
-    });
+    op.abort();
+};
+
+operator.copy(from, to, names).then((op) => {
+    op.on('progress', progress);
+    op.on('end', end(op));
+    op.on('error', error(op));
 });
 ```
 

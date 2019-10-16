@@ -5,11 +5,10 @@ process.env.NODE_ENV = 'test';
 require('@babel/register');
 
 const test = require('supertape');
-const {promisify} = require('es6-promisify');
 const socketIO = require('socket.io-client');
 
 const connect = require('../lib/connect');
-const fileop = promisify(require('../../client/fileop'));
+const fileop = require('../../client/fileop');
 
 const getDestroy = ({socket}) => socket.destroy.bind(socket);
 const getDisconnect = ({socket}) => socket.disconnect.bind(socket);

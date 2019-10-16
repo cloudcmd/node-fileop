@@ -7,23 +7,18 @@ const operator = require('./operator');
 
 const {promisify} = require('es6-promisify');
 
-module.exports = (options, callback) => {
-    if (!callback) {
-        callback = options;
-        options = {};
-    }
-
+module.exports = async (options = {}) => {
     const {
         socketPrefix = '/fileop',
         prefix = ''
     } = options;
+    
     const socketPath = `${prefix}/socket.io`;
-
-    loadSocket((io) => {
-        const fileop = new Fileop(io, socketPrefix, socketPath);
-        
-        callback(null, fileop);
-    });
+    
+    const io = await loadSocket();
+    const fileop = new Fileop(io, socketPrefix, socketPath);
+    
+    return fileop;
 };
 
 class Fileop extends Emitify {
