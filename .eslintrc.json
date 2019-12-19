@@ -9,6 +9,9 @@
         "allowImportExportEverywhere": true,
         "classPrivateMethods": true
     },
+    "rules": {
+        "node/no-unsupported-features/es-syntax": "off"
+    },
     "overrides": [{
         "files": ["client/**"],
         "env": {
