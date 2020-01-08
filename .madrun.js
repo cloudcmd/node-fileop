@@ -4,9 +4,8 @@ const {run} = require('madrun');
 
 module.exports = {
     'test': () => `tape 'test/**/*.js'`,
-    'lint': () => 'putout client server test madrun.js webpack.config.js || true',
+    'lint': () => 'putout client server test .madrun.js webpack.config.js || true',
     'fix:lint': () => run('lint', '--fix'),
-    'putout': () => `putout client server test .madrun.js webpack.config.js`,
     'coverage': () => `nyc ${run('test')}`,
     'report': () => `nyc report --reporter=text-lcov | coveralls`,
     'build': () => run(['rmdir', 'build:*']),
