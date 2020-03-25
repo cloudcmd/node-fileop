@@ -47,7 +47,7 @@
     "copymitter": "^5.0.0",
     "currify": "^4.0.0",
     "express": "^4.16.3",
-    "fullstore": "^2.0.2",
+    "fullstore": "^3.0.0",
     "inly": "^4.0.0",
     "jaguar": "^6.0.0",
     "mellow": "^2.0.0",
