@@ -60,8 +60,8 @@ class Fileop extends Emitify {
         const FIVE_SECONDS = 5000;
         
         const socket = io.connect(href + room, {
-            'max reconnection attempts' : 2 ** 32,
-            'reconnection limit'        : FIVE_SECONDS,
+            'max reconnection attempts': 2 ** 32,
+            'reconnection limit': FIVE_SECONDS,
             'path': socketPath,
         });
         
