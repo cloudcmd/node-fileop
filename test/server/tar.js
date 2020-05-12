@@ -1,5 +1,7 @@
 'use strict';
 
+const {once} = require('events');
+
 const test = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
@@ -18,9 +20,7 @@ test('operate: tar: error', async (t) => {
     
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(tarPath, {
         pack: errorEmitter,
@@ -28,58 +28,57 @@ test('operate: tar: error', async (t) => {
     
     const connect = require(connectPath);
     
-    const {socket, done} = await connect();
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'tar', from, to, names);
-    socket.on('id', (id) => {
-        const error = 'EACCES: /hello/abc';
-        
-        socket.on(`${id}#error`, (e) => {
-            t.equal(e, error, 'should emit error');
-            done();
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    socket.emit(`${id}#start`);
+    const [e] = await once(socket, `${id}#error`);
+    
+    done();
+    
+    const error = 'EACCES: /hello/abc';
+    t.equal(e, error, 'should emit error');
+    t.end();
 });
 
 test('operate: tar: error: root', async (t) => {
     clearFileop();
     clear(tarPath);
     clear(isRootPath);
-    
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
-    
+    const names = ['abc'];
     const truth = () => true;
+    
     Object.defineProperty(truth, 'length', {
         value: 2,
     });
     
     const isRoot = require(isRootPath);
     mock(isRootPath, truth);
-    
     const connect = require(connectPath);
     mock(isRootPath, isRoot);
     
-    const {socket, done} = await connect();
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'tar', from, to, names);
-    socket.on('id', (id) => {
-        const error = 'Could not pack from/to root on windows!';
-        
-        socket.on(`${id}#error`, (e) => {
-            t.equal(e, error, 'should emit error');
-            done();
-            clear(isRootPath);
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    
+    socket.emit(`${id}#start`);
+    const [e] = await once(socket, `${id}#error`);
+    
+    done();
+    clear(isRootPath);
+    
+    const error = 'Could not pack from/to root on windows!';
+    t.equal(e, error, 'should emit error');
+    t.end();
 });
 

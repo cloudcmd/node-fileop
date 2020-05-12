@@ -1,5 +1,7 @@
 'use strict';
 
+const {once} = require('events');
+
 const test = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
@@ -16,26 +18,26 @@ test('operate: remove: error', async (t) => {
     clear(removePath);
     
     const from = '/hello';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(removePath, errorEmitter);
     const connect = require(connectPath);
     
-    const {socket, done} = await connect();
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'remove', from, names);
-    socket.on('id', (id) => {
-        const error = 'EACCES: /hello/abc';
-        
-        socket.on(`${id}#error`, (e) => {
-            t.equal(e, error, 'should emit error');
-            done();
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    socket.emit(`${id}#start`);
+    
+    const [e] = await once(socket, `${id}#error`);
+    
+    done();
+    
+    const error = 'EACCES: /hello/abc';
+    t.equal(e, error, 'should emit error');
+    t.end();
 });
 

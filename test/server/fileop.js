@@ -1,8 +1,9 @@
 'use strict';
 
+const {once} = require('events');
+
 const test = require('supertape');
 const tryToCatch = require('try-to-catch');
-const currify = require('currify');
 
 const connect = require('../lib/connect');
 
@@ -38,15 +39,20 @@ test('fileop: options: auth: reject', async (t) => {
         reject();
     };
     
-    const {socket, done} = await connect({auth});
+    const {
+        socket,
+        done,
+    } = await connect({
+        auth,
+    });
     
     socket.emit('auth');
-    socket.on('reject', () => {
-        done();
-        
-        t.pass('should reject');
-        t.end();
-    });
+    await once(socket, 'reject');
+    
+    done();
+    
+    t.pass('should reject');
+    t.end();
 });
 
 test('fileop: options: auth: accept', async (t) => {
@@ -54,50 +60,38 @@ test('fileop: options: auth: accept', async (t) => {
         accept();
     };
     
-    const {socket, done} = await connect({auth});
+    const {
+        socket,
+        done,
+    } = await connect({
+        auth,
+    });
     
     socket.emit('auth', 'hello', 'world');
     
-    socket.on('accept', () => {
-        done();
-        
-        t.pass('should accept');
-        t.end();
-    });
-});
-
-test('fileop: options: auth: accept', async (t) => {
-    const user = 'bill';
-    const pass = 'world';
+    await once(socket, 'accept');
+    done();
     
-    const auth = currify((accept, reject, username, password) => {
-        done();
-        
-        t.equal(username, user, 'should pass username');
-        t.equal(password, pass, 'should pass password');
-        t.end();
-    });
-    
-    const {socket, done} = await connect({auth});
-    
-    socket.emit('auth', user, pass);
+    t.pass('should accept');
+    t.end();
 });
 
 test('fileop: listen: wrong operation', async (t) => {
-    const {socket, done} = await connect();
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'something');
-    socket.on('id', (id) => {
-        const expected = `Wrong operation: "something"`;
-        
-        socket.on(`${id}#err`, (e) => {
-            done();
-            
-            t.equal(e, expected, 'should emit error');
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    
+    const [id] = await once(socket, 'id');
+    socket.emit(`${id}#start`);
+    
+    const [e] = await once(socket, `${id}#err`);
+    done();
+    
+    const expected = `Wrong operation: "something"`;
+    t.equal(e, expected, 'should emit error');
+    t.end();
 });
 

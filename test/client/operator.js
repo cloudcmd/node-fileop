@@ -1,111 +1,125 @@
 'use strict';
 
-const test = require('supertape');
-const operator = require('../../client/operator');
-const {EventEmitter} = require('events');
+const {
+    once,
+    EventEmitter,
+} = require('events');
 
-test('client: operator: abort', (t) => {
+const test = require('supertape');
+const wait = require('@iocmd/wait');
+
+const operator = require('../../client/operator');
+
+const {keys} = Object;
+
+test('client: operator: abort', async (t) => {
     const id = 1;
     const socket = new EventEmitter();
     const op = operator(id, socket);
-    
     const errorEvent = `${id}#error`;
     const abortEvent = `${id}#abort`;
     
-    op.on('error', () => {
-        op.abort();
-    });
+    const emit = socket.emit.bind(socket);
+    const abort = op.abort.bind(op);
     
-    socket.on(abortEvent, () => {
-        t.pass('should abort');
-        t.end();
-    });
+    await Promise.all([
+        wait(emit, errorEvent),
+        once(op, 'error'),
+    ]);
     
-    socket.emit(errorEvent);
+    await Promise.all([
+        once(socket, abortEvent),
+        wait(abort),
+    ]);
+    
+    t.pass('should abort');
+    t.end();
 });
 
-test('client: operator: continue', (t) => {
+test('client: operator: continue', async (t) => {
     const id = 1;
     const socket = new EventEmitter();
     const op = operator(id, socket);
-    
     const errorEvent = `${id}#error`;
     const continueEvent = `${id}#continue`;
     
-    op.on('error', () => {
-        op.continue();
-    });
+    const emit = socket.emit.bind(socket);
+    op.continue = op.continue.bind(op);
     
-    socket.on(continueEvent, () => {
-        t.pass('should continue');
-        t.end();
-    });
+    await Promise.all([
+        wait(emit, errorEvent),
+        once(op, 'error'),
+    ]);
     
-    socket.emit(errorEvent);
+    await Promise.all([
+        once(socket, continueEvent),
+        wait(op.continue),
+    ]);
+    
+    t.pass('should continue');
+    t.end();
 });
 
-test('client: operator: pause', (t) => {
+test('client: operator: pause', async (t) => {
     const id = 1;
     const socket = new EventEmitter();
     const op = operator(id, socket);
-    
     const pauseEvent = `${id}#pause`;
     
-    socket.on(pauseEvent, () => {
-        t.pass('should pause');
-        t.end();
-    });
+    const pause = op.pause.bind(op);
+    await Promise.all([
+        once(socket, pauseEvent),
+        wait(pause),
+    ]);
     
-    op.pause();
+    t.pass('should pause');
+    t.end();
 });
 
-test('client: operator: progress', (t) => {
+test('client: operator: progress', async (t) => {
     const id = 1;
     const socket = new EventEmitter();
     const op = operator(id, socket);
     
-    op.on('progress', (n) => {
-        t.equal(n, 100, 'should equal');
-        t.end();
-    });
+    const emit = socket.emit.bind(socket);
     
-    socket.emit(`${id}#progress`, 100);
+    const [[n]] = await Promise.all([
+        once(op, 'progress'),
+        wait(emit, `${id}#progress`, 100),
+    ]);
+    
+    t.equal(n, 100, 'should equal');
+    t.end();
 });
 
-test('client: operator: file', (t) => {
+test('client: operator: file', async (t) => {
+    const id = 1;
+    const socket = new EventEmitter();
+    const op = operator(id, socket);
+    const emit = socket.emit.bind(socket);
+    
+    const [[name]] = await Promise.all([
+        once(op, `file`),
+        wait(emit, `${id}#file`, 'hello'),
+    ]);
+    
+    t.equal(name, 'hello', 'should equal');
+    t.end();
+});
+
+test('client: operator: end: off listeners', async (t) => {
     const id = 1;
     const socket = new EventEmitter();
     const op = operator(id, socket);
     
-    op.on('file', (name) => {
-        t.equal(name, 'hello', 'should equal');
-        t.end();
-    });
+    const emit = socket.emit.bind(socket);
     
-    socket.emit(`${id}#file`, 'hello');
+    const [[name]] = await Promise.all([
+        once(op, 'end'),
+        wait(emit, `${id}#end`),
+    ]);
+    
+    t.deepEqual(keys(socket._events), [], 'should off listeners');
+    t.end();
 });
 
-test('client: operator: end', (t) => {
-    const id = 1;
-    const socket = new EventEmitter();
-    const op = operator(id, socket);
-    
-    op.on('end', () => {
-        t.end();
-    });
-    
-    socket.emit(`${id}#end`);
-});
-
-test('client: operator: end: off listeners', (t) => {
-    const id = 1;
-    const socket = new EventEmitter();
-    const op = operator(id, socket);
-    
-    op.on('end', () => {
-        t.deepEqual(socket._events, {}, 'should off listeners');
-        t.end();
-    });
-    
-    socket.emit(`${id}#end`);
-});

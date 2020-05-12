@@ -1,8 +1,11 @@
 'use strict';
 
+const {once} = require('events');
+
 const test = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
+const wait = require('@iocmd/wait');
 
 const clearFileop = require('../lib/clear');
 
@@ -19,33 +22,32 @@ const zipPath = 'onezip';
 test('operate: zip: error', async (t) => {
     clearFileop();
     clear(zipPath);
-    
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(zipPath, {
         pack: errorEmitter,
     });
     
     const connect = require(connectPath);
-    const {socket, done} = await connect();
+    
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
-    socket.on('id', (id) => {
-        const error = 'EACCES: /hello/abc';
-        
-        socket.on(`${id}#error`, (e) => {
-            done();
-            
-            t.equal(e, error, 'should emit error');
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    
+    socket.emit(`${id}#start`);
+    const [e] = await once(socket, `${id}#error`);
+    
+    done();
+    
+    const error = 'EACCES: /hello/abc';
+    t.equal(e, error, 'should emit error');
+    t.end();
 });
 
 test('operate: zip: progress', async (t) => {
@@ -54,58 +56,59 @@ test('operate: zip: progress', async (t) => {
     
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(zipPath, {
         pack: progressEmitter,
     });
     
     const connect = require(connectPath);
-    const {socket, done} = await connect();
+    
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
-    socket.on('id', (id) => {
-        socket.on(`${id}#progress`, (percent) => {
-            done();
-            
-            t.equal(percent, 100, 'should equal');
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    
+    socket.emit(`${id}#start`);
+    const [percent] = await once(socket, `${id}#progress`);
+    
+    done();
+    
+    t.equal(percent, 100, 'should equal');
+    t.end();
 });
 
 test('operate: zip: file', async (t) => {
     clearFileop();
     clear(zipPath);
-    
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(zipPath, {
         pack: fileEmitter,
     });
     
     const connect = require(connectPath);
-    const {socket, done} = await connect();
+    
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
-    socket.on('id', (id) => {
-        socket.on(`${id}#file`, (name) => {
-            done();
-            
-            t.equal(name, 'abc', 'should equal');
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    
+    socket.emit(`${id}#start`);
+    const [name] = await once(socket, `${id}#file`);
+    
+    done();
+    
+    t.equal(name, 'abc', 'should equal');
+    t.end();
 });
 
 test('operate: zip: end', async (t) => {
@@ -114,28 +117,29 @@ test('operate: zip: end', async (t) => {
     
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(zipPath, {
         pack: endEmitter,
     });
     
     const connect = require(connectPath);
-    const {socket, done} = await connect();
+    
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
-    socket.on('id', (id) => {
-        socket.on(`${id}#end`, () => {
-            done();
-            
-            t.pass('should emit end');
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+    const [id] = await once(socket, 'id');
+    
+    socket.emit(`${id}#start`);
+    await once(socket, `${id}#end`);
+    
+    done();
+    
+    t.pass('should emit end');
+    t.end();
 });
 
 test('operate: zip: abort', async (t) => {
@@ -144,31 +148,35 @@ test('operate: zip: abort', async (t) => {
     
     const from = '/hello';
     const to = '/world';
-    const names = [
-        'abc',
-    ];
+    const names = ['abc'];
     
     mock(zipPath, {
         pack: errorEmitter,
     });
     
     const connect = require(connectPath);
-    const {socket, done} = await connect();
+    
+    const {
+        socket,
+        done,
+    } = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
-    socket.on('id', (id) => {
-        socket.on(`${id}#error`, () => {
-            socket.emit(`${id}#abort`);
-        });
+    const [id] = await once(socket, 'id');
+    
+    const emit = socket.emit.bind(socket);
+    
+    await Promise.all([
+        wait(emit, `${id}#start`),
+        once(socket, `${id}#error`),
         
-        socket.on(`${id}#end`, () => {
-            done();
-            
-            t.pass('should emit end');
-            t.end();
-        });
-        
-        socket.emit(`${id}#start`);
-    });
+        wait(emit, `${id}#abort`),
+        once(socket, `${id}#end`),
+    ]);
+    
+    done();
+    
+    t.pass('should emit end');
+    t.end();
 });
 
