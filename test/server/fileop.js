@@ -35,9 +35,7 @@ test('fileop: options: auth not function', async (t) => {
 });
 
 test('fileop: options: auth: reject', async (t) => {
-    const auth = (accept, reject) => () => {
-        reject();
-    };
+    const auth = (accept, reject) => reject;
     
     const {
         socket,
@@ -56,9 +54,7 @@ test('fileop: options: auth: reject', async (t) => {
 });
 
 test('fileop: options: auth: accept', async (t) => {
-    const auth = (accept) => () => {
-        accept();
-    };
+    const auth = (accept) => accept;
     
     const {
         socket,

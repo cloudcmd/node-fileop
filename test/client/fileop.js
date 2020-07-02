@@ -272,9 +272,7 @@ test('client: disconnect', async (t) => {
 });
 
 test('client: auth: reject', async (t) => {
-    const auth = (accept, reject) => () => {
-        reject();
-    };
+    const auth = (accept, reject) => reject;
     
     const {
         done,
@@ -299,9 +297,7 @@ test('client: auth: reject', async (t) => {
 });
 
 test('client: options', async (t) => {
-    const auth = (accept) => () => {
-        accept();
-    };
+    const auth = (accept) => accept;
     
     const socketPrefix = '/hello';
     
