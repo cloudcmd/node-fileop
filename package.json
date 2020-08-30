@@ -52,6 +52,7 @@
     "jaguar": "^6.0.0",
     "mellow": "^2.0.0",
     "onezip": "^4.0.0",
+    "readify": "^7.0.5",
     "remy": "^5.0.0",
     "wraptile": "^3.0.0"
   },
@@ -62,6 +63,7 @@
     "@babel/plugin-proposal-private-methods": "^7.3.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@cloudcmd/stub": "^3.1.0",
     "@iocmd/wait": "^1.0.0",
     "babel-eslint": "^11.0.0-beta",
     "babel-loader": "^8.0.0",

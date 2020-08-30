@@ -78,6 +78,29 @@ operator.copy(from, to, names).then((op) => {
 });
 ```
 
+```
+const read = (info) => () => {
+    console.log(info);
+};
+
+const error = (op) => (data) => {
+    const msg = data + '\n continue?';
+    const is = confirm(msg);
+    
+    if (is)
+        return op.continue();
+    
+    op.abort();
+};
+
+const reader = await operator.read(path);
+reader.on('read', read);
+
+window.on('keydown', () => {
+    reader.changeDirectory('/');
+});
+```
+
 ## Server
 
 ```js

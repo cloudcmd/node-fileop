@@ -66,7 +66,6 @@ function operate(type, id, socket, from, to, files) {
     
     operator.on('error', (error, name) => {
         const msg = `${error.code}: ${error.path}`;
-        
         socket.emit(`${id}#error`, msg, name);
     });
     

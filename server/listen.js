@@ -7,6 +7,7 @@ const fullstore = require('fullstore');
 const operate = require('./operate');
 const extract = require('./extract');
 const pack = currify(require('./pack'));
+const reader = require('./reader');
 const getValue = require('./get-value');
 
 const connectionWraped = wraptile(connection);
@@ -65,6 +66,9 @@ function getOperation(name) {
     
     if (name === 'extract')
         return extract;
+    
+    if (name === 'read')
+        return reader;
     
     if (name === 'copy')
         return operate('copy');
