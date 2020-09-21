@@ -10,4 +10,5 @@ dist-dev
 legacy
 server_
 *.swp
+.putoutcache
 
