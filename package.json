@@ -55,6 +55,7 @@
     "onezip": "^4.0.0",
     "readify": "^7.0.5",
     "remy": "^5.0.0",
+    "try-to-catch": "^3.0.0",
     "wraptile": "^3.0.0"
   },
   "devDependencies": {
@@ -67,7 +68,6 @@
     "@babel/register": "^7.0.0",
     "@cloudcmd/stub": "^3.1.0",
     "@iocmd/wait": "^1.0.0",
-    "babel-eslint": "^11.0.0-beta",
     "babel-loader": "^8.0.0",
     "babel-plugin-dynamic-import-node": "^2.0.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
@@ -89,7 +89,6 @@
     "socket.io": "^2.0.1",
     "socket.io-client": "^2.0.1",
     "supertape": "^2.0.1",
-    "try-to-catch": "^3.0.0",
     "webpack": "^4.1.0",
     "webpack-cli": "^3.0.3"
   },
