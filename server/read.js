@@ -32,18 +32,16 @@ async function readDirectory(id, socket, path) {
 
 async function watchDirectory(id, socket, path) {
     const watcher = watch(path, {
-        //persistent: false
+        persistent: false
     });
     
     watcher.on('all', async () => {
-        const [error] = await tryToCatch(readDirectory, id, socket, path);
+        const [error, info] = await tryToCatch(readDirectory, id, socket, path);
         
         if (error)
             return socket.emit(`${id}#error`, error.message);
-    });
     
-    watcher.on('error', (error) => {
-        socket.emit(`${id}#error`, error.message);
+        socket.emit(`${id}#directory`, info);
     });
 }
 

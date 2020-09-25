@@ -93,7 +93,13 @@ test('operate: read: chokidar', async (t) => {
     
     done();
     
-    t.ok(watch.calledWith(path));
+    const expected = [
+        path, {
+            persistent: false,
+        },
+    ];
+    
+    t.ok(watch.calledWith(...expected));
     t.end();
 });
 
@@ -135,7 +141,13 @@ test('operate: read change: directory', async (t) => {
     
     done();
     
-    t.ok(watch.calledWith('/root'));
+    const expected = [
+        '/root', {
+            persistent: false,
+        },
+    ];
+    
+    t.ok(watch.calledWith(...expected));
     t.end();
 });
 

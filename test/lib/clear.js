@@ -9,6 +9,7 @@ module.exports = () => {
     clear('../../server/operate');
     clear('../../server/pack');
     clear('../../server/extract');
+    clear('../../server/read');
     clear('../../server/is-root-win32');
 };
 
