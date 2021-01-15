@@ -7,7 +7,6 @@ npm-debug.log
 
 dist
 dist-dev
-legacy
 server_
 *.swp
 .putoutcache

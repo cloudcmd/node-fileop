@@ -9,7 +9,7 @@ const {promisify} = require('es6-promisify');
 const fileop = require('../..');
 
 module.exports = promisify(connect);
-const getPrefix = (a) => a && a.prefix;
+const getPrefix = (a) => a?.prefix;
 
 function connect(config, callback) {
     const {options, fn} = whenNoFn(config, callback);

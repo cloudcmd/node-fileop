@@ -1,22 +1,22 @@
 {
-  "plugins": [
-      "@babel/plugin-proposal-private-methods",
-      "@babel/plugin-proposal-class-properties",
-      "dynamic-import-node"
-  ],
-  "env": {
-    "test": {
-      "plugins": [
+    "plugins": [
+        "@babel/plugin-proposal-private-methods",
+        "@babel/plugin-proposal-class-properties",
         "dynamic-import-node"
-      ]
-    },
-    "client": {
-      "presets": [
-        "@babel/preset-env"
-      ],
-      "plugins": [
-        "dynamic-import-webpack"
-      ]
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "dynamic-import-node"
+            ]
+        },
+        "client": {
+            "presets": [
+                "@babel/preset-env"
+            ],
+            "plugins": [
+                "dynamic-import-webpack"
+            ]
+        }
     }
-  }
 }
