@@ -1,9 +1,10 @@
+.nyc_output
 yarn-error.log
 yarn.lock
 package-lock.json
 node_modules
 npm-debug.log
-.nyc_output
+coverage
 
 dist
 dist-dev

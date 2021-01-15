@@ -1,6 +1,7 @@
 'use strict';
 
 const {EventEmitter} = require('events');
+const wraptile = require('wraptile');
 
 module.exports.rawErrorEmitter = (from) => {
     const emitter = new EventEmitter();
@@ -66,3 +67,16 @@ module.exports.endEmitter = () => {
     
     return emitter;
 };
+
+module.exports.customEmitter = wraptile((fns) => {
+    const emitter = new EventEmitter();
+    
+    emitter.pause = fns.pause;
+    emitter.continue = fns.continue;
+    
+    process.nextTick(() => {
+        emitter.emit('end');
+    });
+    
+    return emitter;
+});

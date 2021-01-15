@@ -2,7 +2,7 @@
 
 const {once} = require('events');
 
-const test = require('supertape');
+const {test, stub} = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
 
@@ -11,6 +11,7 @@ const {
     errorEmitter,
     progressEmitter,
     fileEmitter,
+    customEmitter,
 } = require('../lib/emitters');
 
 const clearFileop = require('../lib/clear');
@@ -173,6 +174,41 @@ test('operate: copy: continue', async (t) => {
     await once(socket, `${id}#end`);
     done();
     t.pass('should emit continue');
+    t.end();
+});
+
+test('operate: copy: pause', async (t) => {
+    clearFileop();
+    clear(copyPath);
+    
+    const from = '/';
+    const to = '/world';
+    const names = ['abc'];
+    
+    const pause = stub();
+    mock(copyPath, customEmitter({
+        pause,
+        continue: stub(),
+    }));
+    
+    const connect = require(connectPath);
+    
+    const {
+        socket,
+        done,
+    } = await connect();
+    
+    socket.emit('operation', 'copy', from, to, names);
+    
+    const [id] = await once(socket, 'id');
+    socket.emit(`${id}#start`);
+    socket.emit(`${id}#pause`);
+    socket.emit(`${id}#continue`);
+    await once(socket, `${id}#end`);
+    
+    done();
+    
+    t.calledWithNoArgs(pause);
     t.end();
 });
 
