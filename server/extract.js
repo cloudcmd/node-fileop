@@ -3,14 +3,14 @@
 const currify = require('currify');
 
 const inly = require('inly');
-const mellow = require('mellow');
+const {webToWin} = require('mellow');
 
 const isRootWin32 = currify(require('./is-root-win32'));
 const WIN32_ROOT_MSG = 'Could not extract from root on windows!';
 
 module.exports = (id, root, socket, from, to) => {
-    from = mellow.pathToWin(from, root);
-    to = mellow.pathToWin(to, root);
+    from = webToWin(from, root);
+    to = webToWin(to, root);
     
     if (!isRootWin32(root, from))
         return operate(id, socket, from, to);

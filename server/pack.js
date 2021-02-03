@@ -3,14 +3,14 @@
 const currify = require('currify');
 const onezip = require('onezip');
 const jaguar = require('jaguar');
-const mellow = require('mellow');
+const {webToWin} = require('mellow');
 
 const isRootWin32 = currify(require('./is-root-win32'));
 const WIN32_ROOT_MSG = 'Could not pack from/to root on windows!';
 
 module.exports = (type, id, root, socket, from, to, files) => {
-    from = mellow.pathToWin(from, root);
-    to = mellow.pathToWin(to, root);
+    from = webToWin(from, root);
+    to = webToWin(to, root);
     
     if (![from, to].some(isRootWin32(root)))
         return operate(type, id, socket, from, to, files);

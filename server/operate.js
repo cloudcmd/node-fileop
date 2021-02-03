@@ -5,7 +5,7 @@ const currify = require('currify');
 const remy = require('remy');
 const copymitter = require('copymitter');
 const moveFiles = require('@cloudcmd/move-files');
-const mellow = require('mellow');
+const {webToWin} = require('mellow');
 const isString = (a) => typeof a === 'string';
 
 const isRootWin32 = currify(require('./is-root-win32'));
@@ -18,16 +18,16 @@ const getPaths = (from, to) => {
 };
 
 const getRootError = (type) => `Could not ${type} from/to root on windows!`;
-const pathToWin = (path, root) => {
+const safeWebToWin = (path, root) => {
     if (!isString(path))
         return path;
     
-    return mellow.pathToWin(path, root);
+    return webToWin(path, root);
 };
 
 module.exports = currify((type, id, root, socket, from, to, files) => {
-    from = pathToWin(from, root);
-    to = pathToWin(to, root);
+    from = safeWebToWin(from, root);
+    to = safeWebToWin(to, root);
     
     if (getPaths(from, to).some(isRootWin32(root)))
         socket.emit(`${id}#error`, getRootError(type));
