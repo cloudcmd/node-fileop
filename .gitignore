@@ -10,5 +10,4 @@ dist
 dist-dev
 server_
 *.swp
-.putoutcache
 

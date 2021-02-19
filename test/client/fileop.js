@@ -51,10 +51,12 @@ test('client: copy: error', async (t) => {
     const op = await operator.copy(from, to, files);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
-    t.equal(e, 'ENOENT: /hello', 'should equal');
+    
+    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
     t.end();
 });
 
@@ -76,10 +78,12 @@ test('client: move: error', async (t) => {
     const op = await operator.move(from, to, files);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
-    t.equal(e, 'ENOENT: /hello', 'should equal');
+    
+    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
     t.end();
 });
 
