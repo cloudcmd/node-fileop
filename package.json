@@ -3,6 +3,7 @@
   "version": "5.0.4",
   "description": "file operations emitter middleware",
   "main": "server/index.js",
+  "commitType": "colon",
   "scripts": {
     "test": "madrun test",
     "lint": "madrun lint",
@@ -90,7 +91,7 @@
     "webpack-cli": "^4.0.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "publishConfig": {
     "access": "public"
