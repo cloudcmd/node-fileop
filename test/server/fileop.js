@@ -87,6 +87,7 @@ test('fileop: listen: wrong operation', async (t) => {
     done();
     
     const expected = `Wrong operation: "something"`;
+    
     t.equal(e, expected, 'should emit error');
     t.end();
 });

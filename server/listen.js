@@ -6,8 +6,8 @@ const fullstore = require('fullstore');
 
 const operate = require('./operate');
 const extract = require('./extract');
-const pack = currify(require('./pack'));
 const getValue = require('./get-value');
+const pack = currify(require('./pack'));
 
 const connectionWraped = wraptile(connection);
 const wrongOperation = currify(_wrongOperation);

@@ -9,7 +9,7 @@ test('get-value: function', (t) => {
     
     const result = getValue(value);
     
-    t.equal(result, str, 'should equal');
+    t.equal(result, str);
     t.end();
 });
 
@@ -18,6 +18,6 @@ test('get-value: not function', (t) => {
     
     const result = getValue(value);
     
-    t.equal(result, value, 'should equal');
+    t.equal(result, value);
     t.end();
 });

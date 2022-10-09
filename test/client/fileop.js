@@ -56,7 +56,7 @@ test('client: copy: error', async (t) => {
     after();
     destroy();
     
-    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+    t.equal(e, 'ENOENT: /hello/abc');
     t.end();
 });
 
@@ -83,7 +83,7 @@ test('client: move: error', async (t) => {
     after();
     destroy();
     
-    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+    t.equal(e, 'ENOENT: /hello/abc');
     t.end();
 });
 
@@ -104,10 +104,12 @@ test('client: remove: error', async (t) => {
     const op = await operator.remove(from, files);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
-    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+    
+    t.equal(e, 'ENOENT: /hello/abc');
     t.end();
 });
 
@@ -129,10 +131,12 @@ test('client: tar: error', async (t) => {
     const op = await operator.tar(from, to, files);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
-    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+    
+    t.equal(e, 'ENOENT: /hello/abc');
     t.end();
 });
 
@@ -154,10 +158,12 @@ test('client: zip: error', async (t) => {
     const op = await operator.zip(from, to, files);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     destroy();
     done();
     after();
-    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+    
+    t.equal(e, 'ENOENT: /hello/abc');
     t.end();
 });
 
@@ -178,11 +184,13 @@ test('client: extract: error', async (t) => {
     const op = await operator.extract(from, to);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
     const expected = 'Not supported archive type: ""';
-    t.equal(e, expected, 'should equal');
+    
+    t.equal(e, expected);
     t.end();
 });
 
@@ -206,11 +214,13 @@ test('client: dynamic load socket.io', async (t) => {
     const op = await operator.extract(from, to);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
     const expected = 'Not supported archive type: ""';
-    t.equal(e, expected, 'should equal');
+    
+    t.equal(e, expected);
     t.end();
 });
 
@@ -231,11 +241,13 @@ test('client: get-host: no origin', async (t) => {
     const op = await operator.extract(from, to);
     const destroy = getDestroy(op);
     const [e] = await once(op, 'error');
+    
     done();
     after();
     destroy();
     const expected = 'Not supported archive type: ""';
-    t.equal(e, expected, 'should equal');
+    
+    t.equal(e, expected);
     t.end();
 });
 
@@ -270,7 +282,7 @@ test('client: disconnect', async (t) => {
     after();
     done();
     
-    t.equal(e, 'ENOENT: /hello/abc', 'should equal');
+    t.equal(e, 'ENOENT: /hello/abc');
     t.pass('should disconnect');
     t.end();
 });
@@ -291,11 +303,13 @@ test('client: auth: reject', async (t) => {
     
     const operator = await fileop();
     const destroy = getDestroy(operator);
+    
     operator.emit('auth');
     await once(operator, 'reject');
     after();
     done();
     destroy();
+    
     t.pass('shoud reject');
     t.end();
 });
@@ -327,6 +341,7 @@ test('client: options', async (t) => {
     after();
     done();
     destroy();
+    
     t.pass('shoud accept');
     t.end();
 });

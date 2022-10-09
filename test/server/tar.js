@@ -35,12 +35,14 @@ test('operate: tar: error', async (t) => {
     
     socket.emit('operation', 'tar', from, to, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     const [e] = await once(socket, `${id}#error`);
     
     done();
     
     const error = 'EACCES: /hello/abc';
+    
     t.equal(e, error, 'should emit error');
     t.end();
 });
@@ -49,6 +51,7 @@ test('operate: tar: error: root', async (t) => {
     clearFileop();
     clear(tarPath);
     clear(isRootPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
@@ -60,7 +63,9 @@ test('operate: tar: error: root', async (t) => {
     
     const isRoot = require(isRootPath);
     mock(isRootPath, truth);
+    
     const connect = require(connectPath);
+    
     mock(isRootPath, isRoot);
     
     const {
@@ -78,6 +83,7 @@ test('operate: tar: error: root', async (t) => {
     clear(isRootPath);
     
     const error = 'Could not pack from/to root on windows!';
+    
     t.equal(e, error, 'should emit error');
     t.end();
 });

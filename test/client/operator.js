@@ -88,7 +88,7 @@ test('client: operator: progress', async (t) => {
         wait(emit, `${id}#progress`, 100),
     ]);
     
-    t.equal(n, 100, 'should equal');
+    t.equal(n, 100);
     t.end();
 });
 
@@ -103,7 +103,7 @@ test('client: operator: file', async (t) => {
         wait(emit, `${id}#file`, 'hello'),
     ]);
     
-    t.equal(name, 'hello', 'should equal');
+    t.equal(name, 'hello');
     t.end();
 });
 

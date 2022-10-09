@@ -21,7 +21,7 @@ test('fileop: static', async (t) => {
     
     done();
     
-    t.equal(text, file, 'should equal');
+    t.equal(text, file);
     t.end();
 });
 
@@ -44,7 +44,7 @@ test('fileop: static: dev', async (t) => {
     clearFileop();
     require(connectPath);
     
-    t.equal(text, file, 'should equal');
+    t.equal(text, file);
     t.end();
 });
 
@@ -54,7 +54,7 @@ test('fileop: static', async (t) => {
     
     done();
     
-    t.equal(status, 404, 'should equal');
+    t.equal(status, 404);
     t.end();
 });
 

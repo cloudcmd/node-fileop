@@ -1,12 +1,12 @@
 'use strict';
 
-const DIR_ROOT = __dirname + '/..';
 const path = require('path');
-
 const currify = require('currify');
-const {Router} = require('express');
 
+const {Router} = require('express');
 const listen = require('./listen');
+
+const DIR_ROOT = __dirname + '/..';
 
 const fileopFn = currify(_fileopFn);
 const isDev = process.env.NODE_ENV === 'development';

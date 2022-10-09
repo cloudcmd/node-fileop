@@ -10,7 +10,6 @@
         "classPrivateMethods": true
     },
     "rules": {
-        "node/no-unsupported-features/es-syntax": "off",
         "node/no-unsupported-features/node-builtins": "off"
     },
     "overrides": [{
@@ -20,12 +19,12 @@
         }
     }],
     "extends": [
-        "plugin:node/recommended",
+        "plugin:n/recommended",
         "plugin:putout/recommended"
     ],
     "plugins": [
         "putout",
         "babel",
-        "node"
+        "n"
     ]
 }

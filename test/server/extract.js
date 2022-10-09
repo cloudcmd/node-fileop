@@ -34,6 +34,7 @@ test('operate: extract: error', async (t) => {
     const error = 'EACCES: /hello/abc';
     const from = '/hello/abc';
     const to = '/world/abc';
+    
     socket.emit('operation', 'extract', from, to);
     
     const emit = socket.emit.bind(socket);
@@ -64,6 +65,7 @@ test('operate: extract: progress', async (t) => {
     
     const from = '/hello/abc';
     const to = '/world/abc';
+    
     socket.emit('operation', 'extract', from, to);
     
     const emit = socket.emit.bind(socket);
@@ -76,7 +78,7 @@ test('operate: extract: progress', async (t) => {
     
     done();
     
-    t.equal(n, 100, 'should equal');
+    t.equal(n, 100);
     t.end();
 });
 
@@ -107,7 +109,7 @@ test('operate: extract: file', async (t) => {
     
     done();
     
-    t.equal(name, 'current', 'should equal');
+    t.equal(name, 'current');
     t.end();
 });
 
@@ -125,6 +127,7 @@ test('operate: extract: end', async (t) => {
     
     const from = '/hello/abc';
     const to = '/world/abc';
+    
     socket.emit('operation', 'extract', from, to);
     const [id] = await once(socket, 'id');
     
@@ -152,7 +155,9 @@ test('operate: extract: error: root', async (t) => {
     
     const isRoot = require(isRootPath);
     mock(isRootPath, truth);
+    
     const connect = require(connectPath);
+    
     mock(isRootPath, isRoot);
     
     const {

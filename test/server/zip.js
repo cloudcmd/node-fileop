@@ -22,6 +22,7 @@ const zipPath = 'onezip';
 test('operate: zip: error', async (t) => {
     clearFileop();
     clear(zipPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
@@ -46,6 +47,7 @@ test('operate: zip: error', async (t) => {
     done();
     
     const error = 'EACCES: /hello/abc';
+    
     t.equal(e, error, 'should emit error');
     t.end();
 });
@@ -77,13 +79,14 @@ test('operate: zip: progress', async (t) => {
     
     done();
     
-    t.equal(percent, 100, 'should equal');
+    t.equal(percent, 100);
     t.end();
 });
 
 test('operate: zip: file', async (t) => {
     clearFileop();
     clear(zipPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
@@ -107,7 +110,7 @@ test('operate: zip: file', async (t) => {
     
     done();
     
-    t.equal(name, 'abc', 'should equal');
+    t.equal(name, 'abc');
     t.end();
 });
 

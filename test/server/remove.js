@@ -30,6 +30,7 @@ test('operate: remove: error', async (t) => {
     
     socket.emit('operation', 'remove', from, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     
     const [e] = await once(socket, `${id}#error`);
@@ -37,6 +38,7 @@ test('operate: remove: error', async (t) => {
     done();
     
     const error = 'EACCES: /hello/abc';
+    
     t.equal(e, error, 'should emit error');
     t.end();
 });

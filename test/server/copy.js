@@ -23,9 +23,11 @@ const isRootPath = '../../server/is-root-win32';
 test('operate: copy: error', async (t) => {
     clearFileop();
     clear(copyPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
+    
     mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     
@@ -42,6 +44,7 @@ test('operate: copy: error', async (t) => {
     const [e] = await once(socket, `${id}#error`);
     
     done();
+    
     t.equal(e, error, 'should emit error');
     t.end();
 });
@@ -49,9 +52,11 @@ test('operate: copy: error', async (t) => {
 test('operate: copy: file', async (t) => {
     clearFileop();
     clear(copyPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
+    
     mock(copyPath, fileEmitter);
     const connect = require(connectPath);
     const root = '/';
@@ -65,19 +70,24 @@ test('operate: copy: file', async (t) => {
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     const [name] = await once(socket, `${id}#file`);
+    
     done();
-    t.equal(name, 'abc', 'should equal');
+    
+    t.equal(name, 'abc');
     t.end();
 });
 
 test('operate: copy: progress', async (t) => {
     clearFileop();
     clear(copyPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
+    
     mock(copyPath, progressEmitter);
     const connect = require(connectPath);
     const root = '/';
@@ -91,9 +101,11 @@ test('operate: copy: progress', async (t) => {
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     const [n] = await once(socket, `${id}#progress`);
-    t.equal(n, 100, 'should equal');
+    
+    t.equal(n, 100);
     done();
     t.end();
 });
@@ -101,9 +113,11 @@ test('operate: copy: progress', async (t) => {
 test('operate: copy: end', async (t) => {
     clearFileop();
     clear(copyPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
+    
     mock(copyPath, endEmitter);
     const connect = require(connectPath);
     const root = '/';
@@ -117,6 +131,7 @@ test('operate: copy: end', async (t) => {
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     await once(socket, `${id}#end`);
     t.pass('should emit end');
@@ -127,9 +142,11 @@ test('operate: copy: end', async (t) => {
 test('operate: copy: abort', async (t) => {
     clearFileop();
     clear(copyPath);
+    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
+    
     mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     const root = '/';
@@ -143,6 +160,7 @@ test('operate: copy: abort', async (t) => {
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     await once(socket, `${id}#error`);
     socket.emit(`${id}#abort`);
@@ -155,9 +173,11 @@ test('operate: copy: abort', async (t) => {
 test('operate: copy: continue', async (t) => {
     clearFileop();
     clear(copyPath);
+    
     const from = '/';
     const to = '/world';
     const names = ['abc'];
+    
     mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     
@@ -168,11 +188,13 @@ test('operate: copy: continue', async (t) => {
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     await once(socket, `${id}#error`);
     socket.emit(`${id}#continue`);
     await once(socket, `${id}#end`);
     done();
+    
     t.pass('should emit continue');
     t.end();
 });
@@ -242,6 +264,7 @@ test('operate: copy: error: root', async (t) => {
     socket.emit(`${id}#start`);
     const error = 'Could not copy from/to root on windows!';
     const [e] = await once(socket, `${id}#error`);
+    
     done();
     clear(isRootPath);
     
