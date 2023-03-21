@@ -1,3 +1,14 @@
+2023.03.21, v7.0.0
+
+feature:
+- 72dd7d3 package: rimraf v4.4.0
+- b6ae68c package: putout v29.1.5
+- a2544f1 package: eslint-plugin-putout v17.1.0
+- 9be14a5 package: webpack-cli v5.0.1
+- d10dd24 package: @cloudcmd/move-files v7.0.0
+- c4641e0 package: copymitter v8.0.1
+- 4846421 fileop: add ability to handle abort
+
 2022.10.09, v6.0.0
 
 feature:
