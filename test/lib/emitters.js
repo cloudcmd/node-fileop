@@ -81,7 +81,7 @@ module.exports.customEmitter = wraptile((fns) => {
     return emitter;
 });
 
-module.exports.abortEmitter = (from, to, names = to) => {
+module.exports.abortEmitter = () => {
     const emitter = new EventEmitter();
     
     emitter.abort = () => {
