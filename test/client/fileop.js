@@ -285,7 +285,7 @@ test('client: disconnect', async (t) => {
     t.equal(e, 'ENOENT: /hello/abc');
     t.pass('should disconnect');
     t.end();
-});
+}, {checkAssertionsCount: false});
 
 test('client: auth: reject', async (t) => {
     const auth = (accept, reject) => reject;

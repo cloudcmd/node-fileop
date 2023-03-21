@@ -3,7 +3,7 @@
 const test = require('supertape');
 const isRootPath = '../../server/is-root-win32';
 
-test('isRootWin32', (t) => {
+test('fileop: isRootWin32', (t) => {
     const path = '/';
     const root = '/';
     

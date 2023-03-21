@@ -39,7 +39,6 @@ test('fileop: static: dev', async (t) => {
     const file = fs.readFileSync(name, 'utf8');
     
     done();
-    /* eslint require-atomic-updates: 0 */
     process.env.NODE_ENV = NODE_ENV;
     clearFileop();
     require(connectPath);
@@ -48,7 +47,7 @@ test('fileop: static: dev', async (t) => {
     t.end();
 });
 
-test('fileop: static', async (t) => {
+test('fileop: static: 404', async (t) => {
     const {url, done} = await connect();
     const {status} = await fetch(`${url}/hello.txt`);
     

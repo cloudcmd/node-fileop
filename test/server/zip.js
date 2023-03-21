@@ -170,10 +170,8 @@ test('operate: zip: abort', async (t) => {
     const emit = socket.emit.bind(socket);
     
     await Promise.all([
-        wait(emit, `${id}#start`),
-        once(socket, `${id}#error`),
-        
-        wait(emit, `${id}#abort`),
+        wait(500, emit, `${id}#start`),
+        wait(1000, emit, `${id}#abort`),
         once(socket, `${id}#end`),
     ]);
     

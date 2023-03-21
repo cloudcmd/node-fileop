@@ -70,6 +70,13 @@ function operate(type, id, socket, from, to, files) {
         socket.emit(`${id}#error`, msg, name);
     });
     
+    operator.on('abort', () => {
+        socket.emit(`${id}#end`);
+        socket.removeListener(`${id}#pause`, onPause);
+        socket.removeListener(`${id}#continue`, onContinue);
+        socket.removeListener(`${id}#abort`, onAbort);
+    });
+    
     operator.on('end', () => {
         socket.emit(`${id}#end`);
         socket.removeListener(`${id}#pause`, onPause);
