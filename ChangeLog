@@ -1,3 +1,15 @@
+2023.08.09, v7.1.0
+
+feature:
+- b25c632 package: c8 v8.0.1
+- 9fff727 package: rimraf v5.0.1
+- 979b323 package: eslint-plugin-n v16.0.1
+- 2ced6e8 package: eslint-plugin-putout v19.0.3
+- 6e84710 package: nodemon v3.0.1
+- c7b7958 package: putout v31.0.5
+- 501036e package: babel-loader v9.1.3
+- 0274617 package: remy v7.0.0
+
 2023.03.21, v7.0.0
 
 feature:
