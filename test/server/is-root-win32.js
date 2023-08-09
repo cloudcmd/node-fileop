@@ -24,4 +24,3 @@ test('fileop: isRootWin32', (t) => {
     t.ok(result, 'should return true');
     t.end();
 });
-

@@ -18,6 +18,7 @@ const getPaths = (from, to) => {
 };
 
 const getRootError = (type) => `Could not ${type} from/to root on windows!`;
+
 const safeWebToWin = (path, root) => {
     if (!isString(path))
         return path;
@@ -84,4 +85,3 @@ function operate(type, id, socket, from, to, files) {
         socket.removeListener(`${id}#abort`, onAbort);
     });
 }
-

@@ -7,4 +7,3 @@ module.exports = (path, root) => {
     
     return isWin32 && isRoot && isConfig;
 };
-

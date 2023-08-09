@@ -4,7 +4,6 @@
   "type": "commonjs",
   "description": "file operations emitter middleware",
   "main": "server/index.js",
-  "commitType": "colon",
   "scripts": {
     "test": "madrun test",
     "lint": "madrun lint",

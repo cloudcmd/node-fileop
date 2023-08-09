@@ -52,4 +52,3 @@ function operate(type, id, socket, from, to, files) {
         socket.emit(`${id}#end`);
     });
 }
-

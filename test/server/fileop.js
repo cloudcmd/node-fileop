@@ -9,7 +9,9 @@ const connect = require('../lib/connect');
 
 test('fileop: options: prefix', async (t) => {
     const prefix = '/hello';
-    const {done} = await connect({prefix});
+    const {done} = await connect({
+        prefix,
+    });
     
     done();
     
@@ -28,7 +30,9 @@ test('fileop: options: empty object', async (t) => {
 
 test('fileop: options: auth not function', async (t) => {
     const auth = {};
-    const [error] = await tryToCatch(connect, {auth});
+    const [error] = await tryToCatch(connect, {
+        auth,
+    });
     
     t.equal(error.message, 'auth should be function!', 'should throw when auth not function');
     t.end();
@@ -37,10 +41,7 @@ test('fileop: options: auth not function', async (t) => {
 test('fileop: options: auth: reject', async (t) => {
     const auth = (accept, reject) => reject;
     
-    const {
-        socket,
-        done,
-    } = await connect({
+    const {socket, done} = await connect({
         auth,
     });
     
@@ -56,10 +57,7 @@ test('fileop: options: auth: reject', async (t) => {
 test('fileop: options: auth: accept', async (t) => {
     const auth = (accept) => accept;
     
-    const {
-        socket,
-        done,
-    } = await connect({
+    const {socket, done} = await connect({
         auth,
     });
     
@@ -73,10 +71,7 @@ test('fileop: options: auth: accept', async (t) => {
 });
 
 test('fileop: listen: wrong operation', async (t) => {
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'something');
     
@@ -91,4 +86,3 @@ test('fileop: listen: wrong operation', async (t) => {
     t.equal(e, expected, 'should emit error');
     t.end();
 });
-

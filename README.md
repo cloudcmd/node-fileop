@@ -48,9 +48,9 @@ const operator = await fileop({
 
 const from = '/';
 const to = '/tmp';
-const names = [
-    'bin',
-];
+
+const names = ['bin'];
+
 const progress = (value) => {
     console.log('progress:', value);
 };
@@ -62,7 +62,7 @@ const end = (op) => () => {
 };
 
 const error = (op) => (data) => {
-    const msg = data + '\n continue?';
+    const msg = `${data}\n continue?`;
     const is = confirm(msg);
     
     if (is)
@@ -71,11 +71,13 @@ const error = (op) => (data) => {
     op.abort();
 };
 
-operator.copy(from, to, names).then((op) => {
-    op.on('progress', progress);
-    op.on('end', end(op));
-    op.on('error', error(op));
-});
+operator
+    .copy(from, to, names)
+    .then((op) => {
+        op.on('progress', progress);
+        op.on('end', end(op));
+        op.on('error', error(op));
+    });
 ```
 
 ## Server
@@ -93,12 +95,13 @@ const socket = io.listen(server);
 server.listen(port);
 
 app.use(fileop({
-    prefix: '/fileop', /* default */
-}));
+    prefix: '/fileop' /* default */}));
 
 fileop.listen(socket, {
-    prefix: '/fileop', /* default              */
-    root: '/', /* string or a function */
+    // default
+    prefix: '/fileop',
+    // string or a function
+    root: '/',
     auth: (accept, reject) => (username, password) => {
         if (username === 'root' && password === 'toor')
             accept();

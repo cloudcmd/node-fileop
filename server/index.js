@@ -6,7 +6,7 @@ const currify = require('currify');
 const {Router} = require('express');
 const listen = require('./listen');
 
-const DIR_ROOT = __dirname + '/..';
+const DIR_ROOT = `${__dirname}/..`;
 
 const fileopFn = currify(_fileopFn);
 const isDev = process.env.NODE_ENV === 'development';
@@ -14,11 +14,10 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = (options) => {
     options = options || {};
     const router = Router();
-    const {
-        prefix = '/fileop',
-    } = options;
+    const {prefix = '/fileop'} = options;
     
-    router.route(prefix + '/*')
+    router
+        .route(`${prefix}/*`)
         .get(fileopFn(prefix))
         .get(staticFn);
     
@@ -43,4 +42,3 @@ function staticFn(req, res) {
     const file = path.normalize(DIR_ROOT + req.url);
     res.sendFile(file);
 }
-

@@ -8,4 +8,3 @@ module.exports = async () => {
     
     return await import('socket.io-client');
 };
-

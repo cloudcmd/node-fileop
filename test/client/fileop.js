@@ -38,10 +38,7 @@ test('client: copy: error', async (t) => {
     const to = '/world';
     const files = ['abc'];
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     before({
         origin,
@@ -65,10 +62,7 @@ test('client: move: error', async (t) => {
     const to = '/world';
     const files = ['abc'];
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     before({
         origin,
@@ -91,10 +85,7 @@ test('client: remove: error', async (t) => {
     const from = '/hello';
     const files = ['abc'];
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     before({
         origin,
@@ -118,10 +109,7 @@ test('client: tar: error', async (t) => {
     const to = '/world';
     const files = ['abc'];
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     before({
         origin,
@@ -145,10 +133,7 @@ test('client: zip: error', async (t) => {
     const to = '/world';
     const files = ['abc'];
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     before({
         origin,
@@ -171,10 +156,7 @@ test('client: extract: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     before({
         origin,
@@ -198,10 +180,7 @@ test('client: dynamic load socket.io', async (t) => {
     const from = '/hello';
     const to = '/world';
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     const io = null;
     
@@ -228,10 +207,7 @@ test('client: get-host: no origin', async (t) => {
     const from = '/hello';
     const to = '/world';
     
-    const {
-        done,
-        host,
-    } = await connect();
+    const {done, host} = await connect();
     
     before({
         host,
@@ -256,10 +232,7 @@ test('client: disconnect', async (t) => {
     const to = '/world';
     const files = ['abc'];
     
-    const {
-        done,
-        origin,
-    } = await connect();
+    const {done, origin} = await connect();
     
     const io = null;
     
@@ -285,15 +258,14 @@ test('client: disconnect', async (t) => {
     t.equal(e, 'ENOENT: /hello/abc');
     t.pass('should disconnect');
     t.end();
-}, {checkAssertionsCount: false});
+}, {
+    checkAssertionsCount: false,
+});
 
 test('client: auth: reject', async (t) => {
     const auth = (accept, reject) => reject;
     
-    const {
-        done,
-        origin,
-    } = await connect({
+    const {done, origin} = await connect({
         auth,
     });
     
@@ -319,10 +291,7 @@ test('client: options', async (t) => {
     
     const socketPrefix = '/hello';
     
-    const {
-        done,
-        origin,
-    } = await connect({
+    const {done, origin} = await connect({
         prefix: socketPrefix,
         auth,
     });
@@ -336,6 +305,7 @@ test('client: options', async (t) => {
     });
     
     const destroy = getDestroy(operator);
+    
     operator.emit('auth');
     await once(operator, 'accept');
     after();
@@ -345,4 +315,3 @@ test('client: options', async (t) => {
     t.pass('shoud accept');
     t.end();
 });
-

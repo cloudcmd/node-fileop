@@ -1,5 +1,6 @@
 'use strict';
 
+const isFn = (a) => typeof a === 'function';
 const currify = require('currify');
 const wraptile = require('wraptile');
 const fullstore = require('fullstore');
@@ -18,7 +19,7 @@ const inc = (a) => a(a() + 1);
 module.exports = listen;
 
 function check(auth) {
-    if (auth && typeof auth !== 'function')
+    if (auth && !isFn(auth))
         throw Error('auth should be function!');
 }
 
@@ -33,7 +34,8 @@ function listen(socket, options) {
     
     check(auth);
     
-    socket.of(prefix)
+    socket
+        .of(prefix)
         .on('connection', (socket) => {
             if (!auth)
                 return connection(root, socket);
@@ -84,4 +86,3 @@ function getOperation(name) {
 function _wrongOperation(name, id, root, socket) {
     socket.emit(`${id}#err`, `Wrong operation: "${name}"`);
 }
-

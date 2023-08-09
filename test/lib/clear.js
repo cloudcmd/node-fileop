@@ -11,4 +11,3 @@ module.exports = () => {
     clear('../../server/extract');
     clear('../../server/is-root-win32');
 };
-

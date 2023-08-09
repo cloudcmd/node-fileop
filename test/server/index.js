@@ -27,6 +27,7 @@ test('fileop: static', async (t) => {
 
 test('fileop: static: dev', async (t) => {
     const {NODE_ENV} = process.env;
+    
     process.env.NODE_ENV = 'development';
     clearFileop();
     
@@ -56,4 +57,3 @@ test('fileop: static: 404', async (t) => {
     t.equal(status, 404);
     t.end();
 });
-

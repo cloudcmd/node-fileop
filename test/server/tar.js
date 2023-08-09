@@ -28,10 +28,7 @@ test('operate: tar: error', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'tar', from, to, names);
     const [id] = await once(socket, 'id');
@@ -68,10 +65,7 @@ test('operate: tar: error: root', async (t) => {
     
     mock(isRootPath, isRoot);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'tar', from, to, names);
     const [id] = await once(socket, 'id');
@@ -87,4 +81,3 @@ test('operate: tar: error: root', async (t) => {
     t.equal(e, error, 'should emit error');
     t.end();
 });
-

@@ -24,10 +24,7 @@ test('operate: remove: error', async (t) => {
     mock(removePath, errorEmitter);
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'remove', from, names);
     const [id] = await once(socket, 'id');
@@ -54,10 +51,7 @@ test('operate: remove: abort', async (t) => {
     mock(removePath, abortEmitter);
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'remove', from, names);
     const [id] = await once(socket, 'id');

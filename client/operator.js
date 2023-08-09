@@ -26,15 +26,12 @@ class FileOperator extends Emitify {
     #onError = (error) => {
         this.emit('error', error);
     };
-    
     #onFile = (name) => {
         this.emit('file', name);
     };
-    
     #onProgress = (percent) => {
         this.emit('progress', percent);
     };
-    
     #onEnd = () => {
         const {id, socket} = this;
         
@@ -45,7 +42,6 @@ class FileOperator extends Emitify {
         
         this.emit('end');
     };
-    
     pause() {
         const {id, socket} = this;
         socket.emit(`${id}#pause`);
@@ -61,4 +57,3 @@ class FileOperator extends Emitify {
         socket.emit(`${id}#abort`);
     }
 }
-

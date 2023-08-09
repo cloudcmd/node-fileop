@@ -59,4 +59,3 @@ function whenNoFn(options, fn) {
         fn,
     };
 }
-

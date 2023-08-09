@@ -1,9 +1,6 @@
 'use strict';
 
-const {
-    once,
-    EventEmitter,
-} = require('events');
+const {once, EventEmitter} = require('events');
 
 const test = require('supertape');
 const wait = require('@iocmd/wait');
@@ -44,6 +41,7 @@ test('client: operator: continue', async (t) => {
     const continueEvent = `${id}#continue`;
     
     const emit = socket.emit.bind(socket);
+    
     op.continue = op.continue.bind(op);
     
     await Promise.all([
@@ -122,4 +120,3 @@ test('client: operator: end: off listeners', async (t) => {
     t.deepEqual(keys(socket._events), [], 'should off listeners');
     t.end();
 });
-

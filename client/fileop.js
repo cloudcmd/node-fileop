@@ -8,17 +8,13 @@ const operator = require('./operator');
 const {promisify} = require('es6-promisify');
 
 module.exports = async (options = {}) => {
-    const {
-        socketPrefix = '/fileop',
-        prefix = '',
-    } = options;
+    const {socketPrefix = '/fileop', prefix = ''} = options;
     
     const socketPath = `${prefix}/socket.io`;
     
     const io = await loadSocket();
-    const fileop = new Fileop(io, socketPrefix, socketPath);
     
-    return fileop;
+    return new Fileop(io, socketPrefix, socketPath);
 };
 
 class Fileop extends Emitify {
@@ -94,4 +90,3 @@ class Fileop extends Emitify {
         return this.operate('remove', from, files);
     }
 }
-

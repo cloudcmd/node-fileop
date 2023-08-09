@@ -9,4 +9,3 @@ module.exports = () => {
     
     return origin || `${protocol}//${host}`;
 };
-

@@ -26,10 +26,7 @@ test('operate: extract: error', async (t) => {
     mock(extractPath, rawErrorEmitter);
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     const error = 'EACCES: /hello/abc';
     const from = '/hello/abc';
@@ -58,10 +55,7 @@ test('operate: extract: progress', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     const from = '/hello/abc';
     const to = '/world/abc';
@@ -89,10 +83,7 @@ test('operate: extract: file', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     const from = '/hello/abc';
     const to = '/world/abc';
@@ -120,10 +111,7 @@ test('operate: extract: end', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     const from = '/hello/abc';
     const to = '/world/abc';
@@ -160,10 +148,7 @@ test('operate: extract: error: root', async (t) => {
     
     mock(isRootPath, isRoot);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'extract', from, to, names);
     const [id] = await once(socket, 'id');
@@ -179,4 +164,3 @@ test('operate: extract: error: root', async (t) => {
     t.equal(e, error, 'should emit error');
     t.end();
 });
-

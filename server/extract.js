@@ -37,4 +37,3 @@ function operate(id, socket, from, to) {
         socket.emit(`${id}#end`);
     });
 }
-

@@ -31,12 +31,10 @@ test('operate: copy: error', async (t) => {
     mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     const error = 'EACCES: /hello/abc';
+    
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
     
@@ -61,10 +59,7 @@ test('operate: copy: file', async (t) => {
     const connect = require(connectPath);
     const root = '/';
     
-    const {
-        socket,
-        done,
-    } = await connect({
+    const {socket, done} = await connect({
         root,
     });
     
@@ -92,10 +87,7 @@ test('operate: copy: progress', async (t) => {
     const connect = require(connectPath);
     const root = '/';
     
-    const {
-        socket,
-        done,
-    } = await connect({
+    const {socket, done} = await connect({
         root,
     });
     
@@ -122,10 +114,7 @@ test('operate: copy: end', async (t) => {
     const connect = require(connectPath);
     const root = '/';
     
-    const {
-        socket,
-        done,
-    } = await connect({
+    const {socket, done} = await connect({
         root,
     });
     
@@ -151,10 +140,7 @@ test('operate: copy: abort', async (t) => {
     const connect = require(connectPath);
     const root = '/';
     
-    const {
-        socket,
-        done,
-    } = await connect({
+    const {socket, done} = await connect({
         root,
     });
     
@@ -181,10 +167,7 @@ test('operate: copy: continue', async (t) => {
     mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
@@ -215,10 +198,7 @@ test('operate: copy: pause', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'copy', from, to, names);
     
@@ -253,10 +233,7 @@ test('operate: copy: error: root', async (t) => {
     const connect = require(connectPath);
     mock(isRootPath, isRoot);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
@@ -271,4 +248,3 @@ test('operate: copy: error: root', async (t) => {
     t.equal(e, error, 'should emit error');
     t.end();
 });
-

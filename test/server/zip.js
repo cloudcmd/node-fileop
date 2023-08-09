@@ -33,10 +33,7 @@ test('operate: zip: error', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
     const [id] = await once(socket, 'id');
@@ -66,10 +63,7 @@ test('operate: zip: progress', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
     const [id] = await once(socket, 'id');
@@ -97,10 +91,7 @@ test('operate: zip: file', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
     const [id] = await once(socket, 'id');
@@ -128,10 +119,7 @@ test('operate: zip: end', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
     const [id] = await once(socket, 'id');
@@ -159,10 +147,7 @@ test('operate: zip: abort', async (t) => {
     
     const connect = require(connectPath);
     
-    const {
-        socket,
-        done,
-    } = await connect();
+    const {socket, done} = await connect();
     
     socket.emit('operation', 'zip', from, to, names);
     const [id] = await once(socket, 'id');
@@ -180,4 +165,3 @@ test('operate: zip: abort', async (t) => {
     t.pass('should emit end');
     t.end();
 });
-

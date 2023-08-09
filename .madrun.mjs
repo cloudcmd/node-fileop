@@ -21,4 +21,3 @@ export default {
     'wisdom': () => run('build'),
     'rmdir': () => 'rimraf dist dist-dev',
 };
-
