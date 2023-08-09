@@ -83,7 +83,7 @@
     "node-fetch": "^2.1.2",
     "nodemon": "^3.0.1",
     "putout": "^31.0.5",
-    "rimraf": "^4.4.0",
+    "rimraf": "^5.0.1",
     "socket.io": "^4.1.2",
     "socket.io-client": "^4.1.2",
     "supertape": "^8.1.0",
