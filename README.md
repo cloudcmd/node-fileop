@@ -95,12 +95,12 @@ const socket = io.listen(server);
 server.listen(port);
 
 app.use(fileop({
-    prefix: '/fileop' /* default */}));
+    prefix: '/fileop', /* default */
+}));
 
 fileop.listen(socket, {
     // default
-    prefix: '/fileop',
-    // string or a function
+    prefix: '/fileop', // string or a function
     root: '/',
     auth: (accept, reject) => (username, password) => {
         if (username === 'root' && password === 'toor')
