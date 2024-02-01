@@ -10,7 +10,7 @@ const getValue = require('./get-value');
 const isFn = (a) => typeof a === 'function';
 const pack = currify(require('./pack'));
 
-const connectionWraped = wraptile(connection);
+const connectionWrapped = wraptile(connection);
 const wrongOperation = currify(_wrongOperation);
 
 const id = fullstore(0);
@@ -41,7 +41,7 @@ function listen(socket, options) {
                 return connection(root, socket);
             
             const reject = () => socket.emit('reject');
-            socket.on('auth', auth(connectionWraped(root, socket), reject));
+            socket.on('auth', auth(connectionWrapped(root, socket), reject));
         });
 }
 
