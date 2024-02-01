@@ -1,11 +1,11 @@
 # Fileop [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
-[NPMIMGURL]: https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
-[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[BuildStatusIMGURL]: https://img.shields.io/travis/cloudcmd/node-fileop/master.svg?style=flat
 [NPMURL]: https://npmjs.org/package/@cloudcmd/fileop "npm"
+[NPMIMGURL]: https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
 [LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
-[BuildStatusURL]: https://travis-ci.org/cloudcmd/node-fileop "Build Status"
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[BuildStatusURL]: https://github.com/cloudcmd/node-fileop/actions/workflows/nodejs.yml "Build Status"
+[BuildStatusIMGURL]: https://github.com/cloudcmd/node-fileop/actions/workflows/nodejs.yml/badge.svg
 
 File operations emitter middleware.
 
