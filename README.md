@@ -78,13 +78,10 @@ const error = (op) => (data) => {
     op.abort();
 };
 
-operator
-    .copy(from, to, names)
-    .then((op) => {
-        op.on('progress', progress);
-        op.on('end', end(op));
-        op.on('error', error(op));
-    });
+const op = await operator.copy(from, to, names);
+    
+op.on('progress', progress);
+op.on('end', end(op)); op.on('error', error(op));
 ```
 
 ## Server
