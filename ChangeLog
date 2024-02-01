@@ -1,3 +1,15 @@
+2024.02.01, v8.0.0
+
+feature:
+- 84b0836 drop support of node < 18
+- e730ed2 @cloudcmd/fileop: node-fetch v3.3.2
+- e46f91f @cloudcmd/fileop: eslint-plugin-putout v22.3.1
+- fd01185 @cloudcmd/fileop: madrun v10.0.1
+- 9791943 @cloudcmd/fileop: supertape v10.0.0
+- 3830272 @cloudcmd/fileop: putout v35.0.1
+- a66d12f @cloudcmd/fileop: c8 v9.1.0
+- c36d150 @cloudcmd/fileop: onezip v6.0.1
+
 2023.08.09, v7.1.0
 
 feature:
