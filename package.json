@@ -91,7 +91,7 @@
     "webpack-cli": "^5.0.1"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public"
