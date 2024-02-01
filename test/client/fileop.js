@@ -1,5 +1,6 @@
 'use strict';
 
+const process = require('node:process');
 const {once} = require('events');
 
 process.env.NODE_ENV = 'test';

@@ -1,6 +1,5 @@
 'use strict';
 
-const isFn = (a) => typeof a === 'function';
 const currify = require('currify');
 const wraptile = require('wraptile');
 const fullstore = require('fullstore');
@@ -8,6 +7,7 @@ const fullstore = require('fullstore');
 const operate = require('./operate');
 const extract = require('./extract');
 const getValue = require('./get-value');
+const isFn = (a) => typeof a === 'function';
 const pack = currify(require('./pack'));
 
 const connectionWraped = wraptile(connection);

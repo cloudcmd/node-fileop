@@ -1,5 +1,12 @@
 # Fileop [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
+[NPMIMGURL]: https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[BuildStatusIMGURL]: https://img.shields.io/travis/cloudcmd/node-fileop/master.svg?style=flat
+[NPMURL]: https://npmjs.org/package/@cloudcmd/fileop "npm"
+[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
+[BuildStatusURL]: https://travis-ci.org/cloudcmd/node-fileop "Build Status"
+
 File operations emitter middleware.
 
 ## Install
@@ -111,10 +118,6 @@ fileop.listen(socket, {
 });
 ```
 
-## License
-
-MIT
-
 ## Related
 
 - [Spero](https://github.com/cloudcmd/node-spero "Spero") - file copy emitter middleware based on `socket.io` and `copymitter`
@@ -123,9 +126,6 @@ MIT
 - [Omnes](https://github.com/cloudcmd/node-omnes "Omnes") - extract zip, gz, tar, tar.gz, tgz archives middleware
 - [Salam](https://github.com/coderaiser/node-salam "Salam") - pack and extract zip archives middleware
 
-[NPMIMGURL]: https://img.shields.io/npm/v/@cloudcmd/fileop.svg?style=flat
-[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[BuildStatusIMGURL]: https://img.shields.io/travis/cloudcmd/node-fileop/master.svg?style=flat
-[NPMURL]: https://npmjs.org/package/@cloudcmd/fileop "npm"
-[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
-[BuildStatusURL]: https://travis-ci.org/cloudcmd/node-fileop "Build Status"
+## License
+
+MIT

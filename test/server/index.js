@@ -1,9 +1,9 @@
 'use strict';
 
+const process = require('node:process');
 const path = require('path');
 const fs = require('fs');
 const test = require('supertape');
-const fetch = require('node-fetch');
 
 const connectPath = '../lib/connect';
 const connect = require(connectPath);
@@ -13,6 +13,7 @@ const getName = (dist) => path.join(__dirname, '../../', dist, 'fileop.js');
 
 test('fileop: static', async (t) => {
     const {url, done} = await connect();
+    const {default: fetch} = await import('node-fetch');
     const res = await fetch(`${url}/fileop.js`);
     const text = await res.text();
     const name = getName('dist');
@@ -34,6 +35,7 @@ test('fileop: static: dev', async (t) => {
     const connect = require(connectPath);
     
     const {url, done} = await connect();
+    const {default: fetch} = await import('node-fetch');
     const res = await fetch(`${url}/fileop.js`);
     const text = await res.text();
     const name = getName('dist-dev');
@@ -50,6 +52,7 @@ test('fileop: static: dev', async (t) => {
 
 test('fileop: static: 404', async (t) => {
     const {url, done} = await connect();
+    const {default: fetch} = await import('node-fetch');
     const {status} = await fetch(`${url}/hello.txt`);
     
     done();

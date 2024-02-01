@@ -1,5 +1,6 @@
 'use strict';
 
+const process = require('node:process');
 const {EventEmitter} = require('events');
 const wraptile = require('wraptile');
 
