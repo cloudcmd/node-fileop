@@ -1,3 +1,10 @@
+2024.05.06, v8.0.2
+
+feature:
+- 2a01153 @cloudcmd/fileop: redlint v3.14.1
+- e8eb66e @cloudcmd/fileop: copymitter v9.0.0
+- 6723e37 @cloudcmd/fileop: @cloudcmd/move-files v8.0.0
+
 2024.02.01, v8.0.1
 
 feature:
