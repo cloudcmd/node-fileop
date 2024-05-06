@@ -81,6 +81,7 @@
     "node-fetch": "^3.3.2",
     "nodemon": "^3.0.1",
     "putout": "^35.0.1",
+    "redlint": "^3.14.1",
     "rimraf": "^5.0.1",
     "socket.io": "^4.1.2",
     "socket.io-client": "^4.1.2",
