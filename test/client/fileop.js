@@ -283,7 +283,7 @@ test('client: auth: reject', async (t) => {
     done();
     destroy();
     
-    t.pass('shoud reject');
+    t.pass('should reject');
     t.end();
 });
 
@@ -313,6 +313,6 @@ test('client: options', async (t) => {
     done();
     destroy();
     
-    t.pass('shoud accept');
+    t.pass('should accept');
     t.end();
 });

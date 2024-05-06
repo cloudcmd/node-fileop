@@ -24,7 +24,7 @@ test('fileop: options: empty object', async (t) => {
     
     done();
     
-    t.pass('conect with empty options');
+    t.pass('connect with empty options');
     t.end();
 });
 
