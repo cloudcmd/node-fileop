@@ -1,7 +1,7 @@
 'use strict';
 
 const process = require('node:process');
-const path = require('path');
+const path = require('node:path');
 const currify = require('currify');
 
 const {Router} = require('express');

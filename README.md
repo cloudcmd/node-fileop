@@ -88,7 +88,7 @@ op.on('end', end(op)); op.on('error', error(op));
 
 ```js
 const fileop = require('fileop');
-const http = require('http');
+const http = require('node:http');
 const express = require('express');
 const io = require('socket.io');
 const app = express();

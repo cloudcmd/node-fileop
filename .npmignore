@@ -6,3 +6,4 @@ coverage
 yarn-error.log
 yarn.lock
 
+*.config.*

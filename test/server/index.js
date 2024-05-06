@@ -1,8 +1,8 @@
 'use strict';
 
 const process = require('node:process');
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const test = require('supertape');
 
 const connectPath = '../lib/connect';

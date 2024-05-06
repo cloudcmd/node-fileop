@@ -1,6 +1,6 @@
 'use strict';
 
-const {once, EventEmitter} = require('events');
+const {once, EventEmitter} = require('node:events');
 
 const test = require('supertape');
 const wait = require('@iocmd/wait');

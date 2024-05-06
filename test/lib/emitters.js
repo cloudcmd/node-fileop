@@ -1,7 +1,7 @@
 'use strict';
 
 const process = require('node:process');
-const {EventEmitter} = require('events');
+const {EventEmitter} = require('node:events');
 const wraptile = require('wraptile');
 
 module.exports.rawErrorEmitter = (from) => {
