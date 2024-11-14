@@ -25,7 +25,7 @@ Initialize `operator`.
 
 - `options`:
   - `prefix` - prefix of `fileop` (`/fileop` by default)
-  - `socketPrefix` - prefix of `socket.io` (`` by default)
+  - `socketPrefix` - prefix of `socket.io` (`/fileop' by default)
 
 Returns `operator` in callback.
 
