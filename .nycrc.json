@@ -2,14 +2,14 @@
     "check-coverage": false,
     "all": true,
     "exclude": [
-        "**/dist**",
         "**/*.spec.js",
+        "**/*.config.*",
+        "**/dist**",
         "**/fixture",
-        "test",
         ".*.{js,mjs}",
+        "test",
         "webpack**",
-        "coverage",
-        "**/*.config.*"
+        "coverage"
     ],
     "branches": 100,
     "lines": 100,

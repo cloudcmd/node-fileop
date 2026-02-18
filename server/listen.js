@@ -2,7 +2,7 @@
 
 const currify = require('currify');
 const wraptile = require('wraptile');
-const fullstore = require('fullstore');
+const {fullstore} = require('fullstore');
 
 const operate = require('./operate');
 const extract = require('./extract');

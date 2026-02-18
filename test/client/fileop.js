@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'test';
 
 require('@babel/register');
 
-const test = require('supertape');
+const {test} = require('supertape');
 const socketIO = require('socket.io-client');
 const wait = require('@iocmd/wait');
 
@@ -18,10 +18,10 @@ const getDestroy = ({socket}) => socket.destroy.bind(socket);
 const getDisconnect = ({socket}) => socket.disconnect.bind(socket);
 
 function before({origin, host, io = socketIO}) {
-    global.window = {
+    globalThis.window = {
         io,
     };
-    global.location = {
+    globalThis.location = {
         origin,
         protocol: 'http:',
         host,
@@ -29,9 +29,9 @@ function before({origin, host, io = socketIO}) {
 }
 
 function after() {
-    delete global.window;
-    delete global.location;
-    delete global.io;
+    delete globalThis.window;
+    delete globalThis.location;
+    delete globalThis.io;
 }
 
 test('client: copy: error', async (t) => {

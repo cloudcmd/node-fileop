@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = async () => {
-    const {io} = window;
+    const {io} = globalThis;
     
     if (io)
         return io;

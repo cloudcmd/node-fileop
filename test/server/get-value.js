@@ -1,6 +1,6 @@
 'use strict';
 
-const test = require('supertape');
+const {test} = require('supertape');
 const getValue = require('../../server/get-value');
 
 test('get-value: function', (t) => {

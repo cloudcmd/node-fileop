@@ -1,7 +1,7 @@
 'use strict';
 
 const process = require('node:process');
-const test = require('supertape');
+const {test} = require('supertape');
 const isRootPath = '../../server/is-root-win32';
 
 test('fileop: isRootWin32', (t) => {

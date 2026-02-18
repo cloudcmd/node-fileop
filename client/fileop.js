@@ -1,14 +1,17 @@
 'use strict';
 
 const Emitify = require('emitify');
+
+const {promisify} = require('es6-promisify');
 const getHost = require('./get-host');
 const loadSocket = require('./load-socket');
 const operator = require('./operator');
 
-const {promisify} = require('es6-promisify');
-
 module.exports = async (options = {}) => {
-    const {socketPrefix = '/fileop', prefix = ''} = options;
+    const {
+        socketPrefix = '/fileop',
+        prefix = '',
+    } = options;
     
     const socketPath = `${prefix}/socket.io`;
     

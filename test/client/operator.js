@@ -2,7 +2,7 @@
 
 const {once, EventEmitter} = require('node:events');
 
-const test = require('supertape');
+const {test} = require('supertape');
 const wait = require('@iocmd/wait');
 
 const operator = require('../../client/operator');
@@ -112,7 +112,7 @@ test('client: operator: end: off listeners', async (t) => {
     
     const emit = socket.emit.bind(socket);
     
-    const [[name]] = await Promise.all([
+    await Promise.all([
         once(op, 'end'),
         wait(emit, `${id}#end`),
     ]);

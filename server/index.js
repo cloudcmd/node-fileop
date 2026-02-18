@@ -18,7 +18,7 @@ module.exports = (options) => {
     const {prefix = '/fileop'} = options;
     
     router
-        .route(`${prefix}/*`)
+        .route(`${prefix}/*path`)
         .get(fileopFn(prefix))
         .get(staticFn);
     

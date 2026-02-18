@@ -1,14 +1,14 @@
-.nyc_output
-yarn-error.log
-yarn.lock
-package-lock.json
-node_modules
-npm-debug.log
-coverage
+*.swp
+*.log
+*.lock
 
+.nyc_output
+.idea
+
+package-lock.json
+
+node_modules
+coverage
 dist
 dist-dev
 server_
-*.swp
-
-.idea

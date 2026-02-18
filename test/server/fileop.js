@@ -2,8 +2,8 @@
 
 const {once} = require('node:events');
 
-const test = require('supertape');
-const tryToCatch = require('try-to-catch');
+const {test} = require('supertape');
+const {tryToCatch} = require('try-to-catch');
 
 const connect = require('../lib/connect');
 

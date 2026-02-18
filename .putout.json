@@ -1,0 +1,7 @@
+{
+    "match": {
+        "client": {
+            "nodejs/declare": "off"
+        }
+    }
+}

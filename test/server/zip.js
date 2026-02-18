@@ -2,7 +2,7 @@
 
 const {once} = require('node:events');
 
-const test = require('supertape');
+const {test} = require('supertape');
 const mock = require('mock-require');
 const clear = require('clear-module');
 const wait = require('@iocmd/wait');

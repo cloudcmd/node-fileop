@@ -1,9 +1,12 @@
+*.config.*
+*.log
+*.loc
+
 .*
-test
+
 webpack.config.js
-client
-coverage
-yarn-error.log
 yarn.lock
 
-*.config.*
+test
+client
+coverage

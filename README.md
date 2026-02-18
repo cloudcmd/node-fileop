@@ -88,8 +88,9 @@ op.on('error', error(op));
 ## Server
 
 ```js
-const fileop = require('fileop');
 const http = require('node:http');
+const fileop = require('fileop');
+
 const express = require('express');
 const io = require('socket.io');
 const app = express();

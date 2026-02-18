@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cloudcmd/node-fileop.git"
+    "url": "git+https://github.com/cloudcmd/node-fileop.git"
   },
   "keywords": [
     "file",
@@ -45,7 +45,7 @@
   "homepage": "https://github.com/cloudcmd/node-fileop",
   "dependencies": {
     "@cloudcmd/move-files": "^8.0.0",
-    "copymitter": "^10.0.2",
+    "copymitter": "^9.0.0",
     "currify": "^4.0.0",
     "express": "^5.2.1",
     "fullstore": "^4.0.0",
