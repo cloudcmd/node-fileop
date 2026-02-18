@@ -42,8 +42,8 @@ Supports next types of operations:
 
 - `operator.copy(from, to, names)`
 - `operator.move(from, to, names)`
-- `opreator.remove(from, names)`
-- `opreator.extract(from, to)`
+- `operator.remove(from, names)`
+- `operator.extract(from, to)`
 - `operator.zip(from, to)`
 - `operator.tar(from, to)`
 
@@ -90,9 +90,10 @@ op.on('error', error(op));
 ```js
 import http from 'node:http';
 import {fileop} from 'fileop';
-
 import express from 'express';
-const {Server} from 'socket.io';
+
+const {Server} = from;
+'socket.io';
 const app = express();
 const port = 1337;
 const server = http.createServer(app);
