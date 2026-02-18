@@ -12,7 +12,7 @@ const DIR_ROOT = `${__dirname}/..`;
 const fileopFn = currify(_fileopFn);
 const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = (options) => {
+module.exports.fileop = (options) => {
     options = options || {};
     const router = Router();
     const {prefix = '/fileop'} = options;
@@ -25,7 +25,7 @@ module.exports = (options) => {
     return router;
 };
 
-module.exports.listen = listen;
+module.exports.fileop.listen = listen;
 
 function _fileopFn(prefix, req, res, next) {
     req.url = req.url.replace(prefix, '');

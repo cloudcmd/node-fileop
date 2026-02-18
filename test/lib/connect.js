@@ -6,7 +6,7 @@ const io = require('socket.io');
 const ioClient = require('socket.io-client');
 const {promisify} = require('es6-promisify');
 
-const fileop = require('../..');
+const {fileop} = require('../..');
 
 module.exports = promisify(connect);
 const getPrefix = (a) => a?.prefix;

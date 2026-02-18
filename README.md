@@ -88,15 +88,15 @@ op.on('error', error(op));
 ## Server
 
 ```js
-const http = require('node:http');
-const fileop = require('fileop');
+import http from 'node:http';
+import {fileop} from 'fileop';
 
-const express = require('express');
-const io = require('socket.io');
+import express from 'express';
+const {Server} from 'socket.io';
 const app = express();
 const port = 1337;
 const server = http.createServer(app);
-const socket = io.listen(server);
+const socket = new Server(server);
 
 server.listen(port);
 
