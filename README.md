@@ -42,8 +42,8 @@ Supports next types of operations:
 
 - `operator.copy(from, to, names)`
 - `operator.move(from, to, names)`
-- `opreator.remove(from, names)`
-- `opreator.extract(from, to)`
+- `operator.remove(from, names)`
+- `operator.extract(from, to)`
 - `operator.zip(from, to)`
 - `operator.tar(from, to)`
 
