@@ -90,9 +90,9 @@ op.on('error', error(op));
 ```js
 import http from 'node:http';
 import {fileop} from 'fileop';
-
 import express from 'express';
-const {Server} from 'socket.io';
+import {Server} from 'socket.io';
+
 const app = express();
 const port = 1337;
 const server = http.createServer(app);
