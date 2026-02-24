@@ -1,3 +1,11 @@
+2026.02.24, v9.0.2
+
+fix:
+- bdaef42 fileop: copymitter (coderaiser/cloudcmd#457)
+
+feature:
+- 8864626 @cloudcmd/fileop: copymitter v10.1.0 (coderaiser/cloudcmd#457)
+
 2026.02.24, v9.0.1
 
 feature:
