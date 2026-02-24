@@ -30,6 +30,7 @@ function listen(socket, options) {
         auth,
         prefix = '/fileop',
         root = '/',
+        ...overrides
     } = options;
     
     check(auth);
@@ -38,14 +39,18 @@ function listen(socket, options) {
         .of(prefix)
         .on('connection', (socket) => {
             if (!auth)
-                return connection(root, socket);
+                return connection(root, socket, overrides);
             
             const reject = () => socket.emit('reject');
-            socket.on('auth', auth(connectionWrapped(root, socket), reject));
+            const onConnect = connectionWrapped(root, socket, overrides);
+            
+            const onAuth = auth(onConnect, reject);
+            
+            socket.on('auth', onAuth);
         });
 }
 
-function connection(rootRaw, socket) {
+function connection(rootRaw, socket, overrides) {
     socket.emit('accept');
     socket.on('operation', (name, from, to, files) => {
         socket.emit('id', inc(id));
@@ -53,7 +58,8 @@ function connection(rootRaw, socket) {
         socket.once(`${id()}#start`, () => {
             socket.emit(`${id()}started`);
             
-            const operation = getOperation(name);
+            const operation = getOperation(name, overrides);
+            
             const root = getValue(rootRaw);
             
             operation(id(), root, socket, from, to, files);
@@ -61,18 +67,18 @@ function connection(rootRaw, socket) {
     });
 }
 
-function getOperation(name) {
+function getOperation(name, overrides = {}) {
     if (name === 'remove')
-        return operate('remove');
+        return operate('remove', overrides);
     
     if (name === 'extract')
         return extract;
     
     if (name === 'copy')
-        return operate('copy');
+        return operate('copy', overrides);
     
     if (name === 'move')
-        return operate('move');
+        return operate('move', overrides);
     
     if (name === 'tar')
         return pack('tar');

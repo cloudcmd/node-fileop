@@ -1,10 +1,7 @@
 'use strict';
 
 const {once} = require('node:events');
-
 const {test, stub} = require('supertape');
-const mock = require('mock-require');
-const clear = require('clear-module');
 
 const {
     endEmitter,
@@ -14,24 +11,18 @@ const {
     customEmitter,
 } = require('../lib/emitters');
 
-const clearFileop = require('../lib/clear');
+const connect = require('../lib/connect');
 
 const connectPath = '../lib/connect';
-const copyPath = 'copymitter';
-const isRootPath = '../../server/is-root-win32';
 
 test('operate: copy: error', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
     
-    mock(copyPath, errorEmitter);
-    const connect = require(connectPath);
-    
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        copymitter: errorEmitter,
+    });
     
     const error = 'EACCES: /hello/abc';
     
@@ -48,19 +39,14 @@ test('operate: copy: error', async (t) => {
 });
 
 test('operate: copy: file', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
-    
-    mock(copyPath, fileEmitter);
-    const connect = require(connectPath);
     const root = '/';
     
     const {socket, done} = await connect({
         root,
+        copymitter: fileEmitter,
     });
     
     socket.emit('operation', 'copy', from, to, names);
@@ -76,19 +62,15 @@ test('operate: copy: file', async (t) => {
 });
 
 test('operate: copy: progress', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
     
-    mock(copyPath, progressEmitter);
-    const connect = require(connectPath);
     const root = '/';
     
     const {socket, done} = await connect({
         root,
+        copymitter: progressEmitter,
     });
     
     socket.emit('operation', 'copy', from, to, names);
@@ -97,25 +79,22 @@ test('operate: copy: progress', async (t) => {
     socket.emit(`${id}#start`);
     const [n] = await once(socket, `${id}#progress`);
     
-    t.equal(n, 100);
     done();
+    
+    t.equal(n, 100);
     t.end();
 });
 
 test('operate: copy: end', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
     
-    mock(copyPath, endEmitter);
-    const connect = require(connectPath);
     const root = '/';
     
     const {socket, done} = await connect({
         root,
+        copymitter: endEmitter,
     });
     
     socket.emit('operation', 'copy', from, to, names);
@@ -123,25 +102,23 @@ test('operate: copy: end', async (t) => {
     
     socket.emit(`${id}#start`);
     await once(socket, `${id}#end`);
-    t.pass('should emit end');
     done();
+    
+    t.pass('should emit end');
     t.end();
 });
 
 test('operate: copy: abort', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
     
-    mock(copyPath, errorEmitter);
     const connect = require(connectPath);
     const root = '/';
     
     const {socket, done} = await connect({
         root,
+        copymitter: errorEmitter,
     });
     
     socket.emit('operation', 'copy', from, to, names);
@@ -151,23 +128,20 @@ test('operate: copy: abort', async (t) => {
     await once(socket, `${id}#error`);
     socket.emit(`${id}#abort`);
     await once(socket, `${id}#end`);
-    t.pass('should emit abort');
     done();
+    
+    t.pass('should emit abort');
     t.end();
 });
 
 test('operate: copy: continue', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/';
     const to = '/world';
     const names = ['abc'];
     
-    mock(copyPath, errorEmitter);
-    const connect = require(connectPath);
-    
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        copymitter: errorEmitter,
+    });
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
@@ -183,29 +157,28 @@ test('operate: copy: continue', async (t) => {
 });
 
 test('operate: copy: pause', async (t) => {
-    clearFileop();
-    clear(copyPath);
-    
     const from = '/';
     const to = '/world';
     const names = ['abc'];
     
     const pause = stub();
-    mock(copyPath, customEmitter({
+    const copymitter = customEmitter({
         pause,
         continue: stub(),
-    }));
+    });
     
-    const connect = require(connectPath);
-    
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        copymitter,
+    });
     
     socket.emit('operation', 'copy', from, to, names);
     
     const [id] = await once(socket, 'id');
+    
     socket.emit(`${id}#start`);
     socket.emit(`${id}#pause`);
     socket.emit(`${id}#continue`);
+    
     await once(socket, `${id}#end`);
     
     done();
@@ -215,25 +188,15 @@ test('operate: copy: pause', async (t) => {
 });
 
 test('operate: copy: error: root', async (t) => {
-    clearFileop();
-    clear(isRootPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
-    const truth = () => true;
+    const success = stub().returns(true);
+    const isRootWin32 = stub().returns(success);
     
-    Object.defineProperty(truth, 'length', {
-        value: 2,
+    const {socket, done} = await connect({
+        isRootWin32,
     });
-    
-    const isRoot = require(isRootPath);
-    mock(isRootPath, truth);
-    
-    const connect = require(connectPath);
-    mock(isRootPath, isRoot);
-    
-    const {socket, done} = await connect();
     
     socket.emit('operation', 'copy', from, to, names);
     const [id] = await once(socket, 'id');
@@ -243,7 +206,6 @@ test('operate: copy: error: root', async (t) => {
     const [e] = await once(socket, `${id}#error`);
     
     done();
-    clear(isRootPath);
     
     t.equal(e, error, 'should emit error');
     t.end();

@@ -3,12 +3,12 @@
 const currify = require('currify');
 
 const remy = require('remy');
-const copymitter = require('copymitter');
+const {copymitter: _copymitter} = require('copymitter');
 const moveFiles = require('@cloudcmd/move-files');
 const {webToWin} = require('mellow');
 const isString = (a) => typeof a === 'string';
 
-const isRootWin32 = currify(require('./is-root-win32'));
+const _isRootWin32 = currify(require('./is-root-win32'));
 
 const getPaths = (from, to) => {
     if (!isString(to))
@@ -26,17 +26,25 @@ const safeWebToWin = (path, root) => {
     return webToWin(path, root);
 };
 
-module.exports = currify((type, id, root, socket, from, to, files) => {
+module.exports = currify((type, overrides, id, root, socket, from, to, files) => {
+    const {
+        isRootWin32 = _isRootWin32,
+    } = overrides;
+    
     from = safeWebToWin(from, root);
     to = safeWebToWin(to, root);
     
     if (getPaths(from, to).some(isRootWin32(root)))
         socket.emit(`${id}#error`, getRootError(type));
     
-    operate(type, id, socket, from, to, files);
+    operate(type, id, socket, from, to, files, overrides);
 });
 
-function getOperation(type) {
+function getOperation(type, overrides) {
+    const {
+        copymitter = _copymitter,
+    } = overrides;
+    
     if (type === 'remove')
         return remy;
     
@@ -46,8 +54,8 @@ function getOperation(type) {
     return copymitter;
 }
 
-function operate(type, id, socket, from, to, files) {
-    const operate = getOperation(type);
+function operate(type, id, socket, from, to, files, overrides) {
+    const operate = getOperation(type, overrides);
     const operator = operate(from, to, files);
     const onPause = () => operator.pause();
     const onContinue = () => operator.continue();
