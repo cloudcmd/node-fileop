@@ -2,7 +2,7 @@
 
 const currify = require('currify');
 
-const remy = require('remy');
+const _remy = require('remy');
 const {copymitter: _copymitter} = require('copymitter');
 const moveFiles = require('@cloudcmd/move-files');
 const {webToWin} = require('mellow');
@@ -43,6 +43,7 @@ module.exports = currify((type, overrides, id, root, socket, from, to, files) =>
 function getOperation(type, overrides) {
     const {
         copymitter = _copymitter,
+        remy = _remy,
     } = overrides;
     
     if (type === 'remove')
