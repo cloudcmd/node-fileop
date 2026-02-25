@@ -1,3 +1,8 @@
+2026.02.25, v9.0.3
+
+feature:
+- ab649e3 @cloudcmd/fileop: remove: get rid of mock-require
+
 2026.02.24, v9.0.2
 
 fix:
