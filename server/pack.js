@@ -1,32 +1,34 @@
 'use strict';
 
 const currify = require('currify');
-const onezip = require('onezip');
+const {onezip} = require('onezip');
 const jaguar = require('jaguar');
 const {webToWin} = require('mellow');
 
 const isRootWin32 = currify(require('./is-root-win32'));
 const WIN32_ROOT_MSG = 'Could not pack from/to root on windows!';
 
-module.exports = (type, id, root, socket, from, to, files) => {
+module.exports = (type, id, root, socket, from, to, files, overrides) => {
     from = webToWin(from, root);
     to = webToWin(to, root);
     
     if (![from, to].some(isRootWin32(root)))
-        return operate(type, id, socket, from, to, files);
+        return operate(type, id, socket, from, to, files, overrides);
     
     socket.emit(`${id}#error`, WIN32_ROOT_MSG);
 };
 
-function getOperation(type) {
-    if (type === 'tar')
-        return jaguar.pack;
+function getOperation(type, overrides = {}) {
+    const {pack} = overrides;
     
-    return onezip.pack;
+    if (type === 'tar')
+        return (pack || jaguar.pack);
+    
+    return (pack || onezip.pack);
 }
 
-function operate(type, id, socket, from, to, files) {
-    const operate = getOperation(type);
+function operate(type, id, socket, from, to, files, overrides) {
+    const operate = getOperation(type, overrides);
     const operator = operate(from, to, files);
     
     operator.on('file', (name) => {

@@ -59,10 +59,9 @@ function connection(rootRaw, socket, overrides) {
             socket.emit(`${id()}started`);
             
             const operation = getOperation(name, overrides);
-            
             const root = getValue(rootRaw);
             
-            operation(id(), root, socket, from, to, files);
+            operation(id(), root, socket, from, to, files, overrides);
         });
     });
 }
