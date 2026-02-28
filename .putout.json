@@ -7,7 +7,5 @@
             "nodejs/declare": "off"
         }
     },
-    "plugins":[
-        "socket-io"
-    ]
+    "plugins": ["socket-io"]
 }
