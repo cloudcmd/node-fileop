@@ -1,3 +1,10 @@
+2026.02.28, v9.0.5
+
+feature:
+- a31fa73 @cloudcmd/fileop: migrate to ESM
+- bcd9aa4 @cloudcmd/fileop: get rid of mock-require
+- 1749b82 fileop: extract: get rid of mock-require
+
 2026.02.26, v9.0.4
 
 feature:
