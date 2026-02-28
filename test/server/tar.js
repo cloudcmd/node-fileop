@@ -1,12 +1,7 @@
-'use strict';
-
-const {once} = require('node:events');
-
-const {test, stub} = require('supertape');
-
-const {errorEmitter} = require('../lib/emitters');
-
-const connect = require('../lib/connect');
+import {once} from 'node:events';
+import {test, stub} from 'supertape';
+import {errorEmitter} from '../lib/emitters.js';
+import connect from '../lib/connect.js';
 
 test('operate: tar: error', async (t) => {
     const from = '/hello';

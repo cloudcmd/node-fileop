@@ -1,14 +1,13 @@
-'use strict';
+import currify from 'currify';
+import wraptile from 'wraptile';
+import {fullstore} from 'fullstore';
+import operate from './operate.js';
+import extract from './extract.js';
+import getValue from './get-value.js';
+import _pack from './pack.js';
 
-const currify = require('currify');
-const wraptile = require('wraptile');
-const {fullstore} = require('fullstore');
-
-const operate = require('./operate');
-const extract = require('./extract');
-const getValue = require('./get-value');
 const isFn = (a) => typeof a === 'function';
-const pack = currify(require('./pack'));
+const pack = currify(_pack);
 
 const connectionWrapped = wraptile(connection);
 const wrongOperation = currify(_wrongOperation);
@@ -16,7 +15,7 @@ const wrongOperation = currify(_wrongOperation);
 const id = fullstore(0);
 const inc = (a) => a(a() + 1);
 
-module.exports = listen;
+export default listen;
 
 function check(auth) {
     if (auth && !isFn(auth))

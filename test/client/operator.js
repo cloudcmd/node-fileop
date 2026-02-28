@@ -1,11 +1,7 @@
-'use strict';
-
-const {once, EventEmitter} = require('node:events');
-
-const {test} = require('supertape');
-const wait = require('@iocmd/wait');
-
-const operator = require('../../client/operator');
+import {once, EventEmitter} from 'node:events';
+import {test} from 'supertape';
+import wait from '@iocmd/wait';
+import operator from '../../client/operator.js';
 
 const {keys} = Object;
 

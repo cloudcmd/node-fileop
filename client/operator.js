@@ -1,8 +1,6 @@
-'use strict';
+import Emitify from 'emitify';
 
-const Emitify = require('emitify');
-
-module.exports = (id, socket) => {
+export default (id, socket) => {
     return new FileOperator(id, socket);
 };
 

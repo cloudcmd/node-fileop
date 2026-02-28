@@ -1,14 +1,13 @@
-'use strict';
+import currify from 'currify';
+import {onezip} from 'onezip';
+import jaguar from 'jaguar';
+import {webToWin} from 'mellow';
+import __isRootWin32 from './is-root-win32.js';
 
-const currify = require('currify');
-const {onezip} = require('onezip');
-const jaguar = require('jaguar');
-const {webToWin} = require('mellow');
-
-const _isRootWin32 = currify(require('./is-root-win32'));
+const _isRootWin32 = currify(__isRootWin32);
 const WIN32_ROOT_MSG = 'Could not pack from/to root on windows!';
 
-module.exports = (type, id, root, socket, from, to, files, overrides) => {
+export default (type, id, root, socket, from, to, files, overrides) => {
     const {
         isRootWin32 = _isRootWin32,
     } = overrides;

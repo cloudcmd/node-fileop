@@ -1,14 +1,8 @@
-'use strict';
-
-const {once} = require('node:events');
-
-const {test} = require('supertape');
-
-const wait = require('@iocmd/wait');
-
-const {errorEmitter, abortEmitter} = require('../lib/emitters');
-
-const connect = require('../lib/connect.js');
+import {once} from 'node:events';
+import {test} from 'supertape';
+import wait from '@iocmd/wait';
+import {errorEmitter, abortEmitter} from '../lib/emitters.js';
+import connect from '../lib/connect.js';
 
 test('operate: remove: error', async (t) => {
     const from = '/hello';

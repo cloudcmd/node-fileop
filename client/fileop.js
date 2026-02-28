@@ -1,13 +1,10 @@
-'use strict';
+import Emitify from 'emitify';
+import {promisify} from 'es6-promisify';
+import getHost from './get-host.js';
+import loadSocket from './load-socket.js';
+import operator from './operator.js';
 
-const Emitify = require('emitify');
-
-const {promisify} = require('es6-promisify');
-const getHost = require('./get-host');
-const loadSocket = require('./load-socket');
-const operator = require('./operator');
-
-module.exports = async (options = {}) => {
+export default async (options = {}) => {
     const {
         socketPrefix = '/fileop',
         prefix = '',

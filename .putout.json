@@ -1,7 +1,13 @@
 {
+    "rules": {
+        "tape/remove-skip": "off"
+    },
     "match": {
         "client": {
             "nodejs/declare": "off"
         }
-    }
+    },
+    "plugins":[
+        "socket-io"
+    ]
 }

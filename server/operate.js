@@ -1,14 +1,12 @@
-'use strict';
+import currify from 'currify';
+import _remy from 'remy';
+import {copymitter as _copymitter} from 'copymitter';
+import moveFiles from '@cloudcmd/move-files';
+import {webToWin} from 'mellow';
+import __isRootWin32 from './is-root-win32.js';
 
-const currify = require('currify');
-
-const _remy = require('remy');
-const {copymitter: _copymitter} = require('copymitter');
-const moveFiles = require('@cloudcmd/move-files');
-const {webToWin} = require('mellow');
 const isString = (a) => typeof a === 'string';
-
-const _isRootWin32 = currify(require('./is-root-win32'));
+const _isRootWin32 = currify(__isRootWin32);
 
 const getPaths = (from, to) => {
     if (!isString(to))
@@ -26,7 +24,7 @@ const safeWebToWin = (path, root) => {
     return webToWin(path, root);
 };
 
-module.exports = currify((type, overrides, id, root, socket, from, to, files) => {
+export default currify((type, overrides, id, root, socket, from, to, files) => {
     const {
         isRootWin32 = _isRootWin32,
     } = overrides;

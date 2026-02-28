@@ -1,18 +1,18 @@
-'use strict';
+import process from 'node:process';
+import path, {dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import currify from 'currify';
+import {Router} from 'express';
+import listen from './listen.js';
 
-const process = require('node:process');
-const path = require('node:path');
-const currify = require('currify');
-
-const {Router} = require('express');
-const listen = require('./listen');
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const DIR_ROOT = `${__dirname}/..`;
 
 const fileopFn = currify(_fileopFn);
 const isDev = process.env.NODE_ENV === 'development';
 
-module.exports.fileop = (options) => {
+export const fileop = (options) => {
     options = options || {};
     const router = Router();
     const {prefix = '/fileop'} = options;
@@ -25,7 +25,7 @@ module.exports.fileop = (options) => {
     return router;
 };
 
-module.exports.fileop.listen = listen;
+fileop.listen = listen;
 
 function _fileopFn(prefix, req, res, next) {
     req.url = req.url.replace(prefix, '');

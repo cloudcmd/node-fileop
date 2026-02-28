@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = async () => {
+export default async () => {
     const {io} = globalThis;
     
     if (io)

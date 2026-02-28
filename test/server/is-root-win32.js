@@ -1,10 +1,7 @@
-'use strict';
+import process from 'node:process';
+import {test} from 'supertape';
 
-const process = require('node:process');
-const {test} = require('supertape');
-const isRootPath = '../../server/is-root-win32';
-
-test('fileop: isRootWin32', (t) => {
+test('fileop: isRootWin32', async (t) => {
     const path = '/';
     const root = '/';
     
@@ -15,7 +12,7 @@ test('fileop: isRootWin32', (t) => {
         writable: false,
     });
     
-    const isRootWin32 = require(isRootPath);
+    const {default: isRootWin32} = await import('../../server/is-root-win32.js');
     const result = isRootWin32(path, root);
     
     Object.defineProperty(process, 'platform', {

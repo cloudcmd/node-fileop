@@ -1,14 +1,12 @@
-'use strict';
+import currify from 'currify';
+import _inly from 'inly';
+import {webToWin} from 'mellow';
+import __isRootWin32 from './is-root-win32.js';
 
-const currify = require('currify');
-
-const _inly = require('inly');
-const {webToWin} = require('mellow');
-
-const _isRootWin32 = currify(require('./is-root-win32'));
+const _isRootWin32 = currify(__isRootWin32);
 const WIN32_ROOT_MSG = 'Could not extract from root on windows!';
 
-module.exports = (id, root, socket, from, to, files, overrides = {}) => {
+export default (id, root, socket, from, to, files, overrides = {}) => {
     const {
         isRootWin32 = _isRootWin32,
     } = overrides;

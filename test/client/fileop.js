@@ -1,18 +1,12 @@
-'use strict';
-
-const process = require('node:process');
-const {once} = require('node:events');
+import process from 'node:process';
+import {once} from 'node:events';
+import {test} from 'supertape';
+import socketIO from 'socket.io-client';
+import wait from '@iocmd/wait';
+import connect from '../lib/connect.js';
+import fileop from '../../client/fileop.js';
 
 process.env.NODE_ENV = 'test';
-
-require('@babel/register');
-
-const {test} = require('supertape');
-const socketIO = require('socket.io-client');
-const wait = require('@iocmd/wait');
-
-const connect = require('../lib/connect');
-const fileop = require('../../client/fileop');
 
 const getDestroy = ({socket}) => socket.destroy.bind(socket);
 const getDisconnect = ({socket}) => socket.disconnect.bind(socket);
@@ -257,10 +251,7 @@ test('client: disconnect', async (t) => {
     done();
     
     t.equal(e, 'ENOENT: /hello/abc');
-    t.pass('should disconnect');
     t.end();
-}, {
-    checkAssertionsCount: false,
 });
 
 test('client: auth: reject', async (t) => {

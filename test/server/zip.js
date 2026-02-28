@@ -1,26 +1,18 @@
-'use strict';
-
-const {once} = require('node:events');
-
-const {test} = require('supertape');
-const wait = require('@iocmd/wait');
-
-const {
+import {once} from 'node:events';
+import {test} from 'supertape';
+import wait from '@iocmd/wait';
+import connect from '../lib/connect.js';
+import {
     endEmitter,
     errorEmitter,
     progressEmitter,
     fileEmitter,
-} = require('../lib/emitters');
-
-const connect = require('../lib/connect');
-const connectPath = '../lib/connect';
+} from '../lib/emitters.js';
 
 test('operate: zip: error', async (t) => {
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
-    
-    const connect = require(connectPath);
     
     const {socket, done} = await connect({
         pack: errorEmitter,

@@ -1,19 +1,13 @@
-'use strict';
-
-const {once} = require('node:events');
-const {test, stub} = require('supertape');
-
-const {
+import {once} from 'node:events';
+import {test, stub} from 'supertape';
+import connect from '../lib/connect.js';
+import {
     endEmitter,
     errorEmitter,
     progressEmitter,
     fileEmitter,
     customEmitter,
-} = require('../lib/emitters');
-
-const connect = require('../lib/connect');
-
-const connectPath = '../lib/connect';
+} from '../lib/emitters.js';
 
 test('operate: copy: error', async (t) => {
     const from = '/hello';
@@ -113,7 +107,6 @@ test('operate: copy: abort', async (t) => {
     const to = '/world';
     const names = ['abc'];
     
-    const connect = require(connectPath);
     const root = '/';
     
     const {socket, done} = await connect({

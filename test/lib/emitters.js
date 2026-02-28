@@ -1,10 +1,8 @@
-'use strict';
+import process from 'node:process';
+import {EventEmitter} from 'node:events';
+import wraptile from 'wraptile';
 
-const process = require('node:process');
-const {EventEmitter} = require('node:events');
-const wraptile = require('wraptile');
-
-module.exports.rawErrorEmitter = (from) => {
+export const rawErrorEmitter = (from) => {
     const emitter = new EventEmitter();
     
     process.nextTick(() => {
@@ -14,7 +12,7 @@ module.exports.rawErrorEmitter = (from) => {
     return emitter;
 };
 
-module.exports.errorEmitter = (from, to, names = to) => {
+export const errorEmitter = (from, to, names = to) => {
     const emitter = new EventEmitter();
     const [name] = names || ['current'];
     const path = `${from}/${name}`;
@@ -38,7 +36,7 @@ module.exports.errorEmitter = (from, to, names = to) => {
     return emitter;
 };
 
-module.exports.progressEmitter = () => {
+export const progressEmitter = () => {
     const emitter = new EventEmitter();
     
     process.nextTick(() => {
@@ -48,7 +46,7 @@ module.exports.progressEmitter = () => {
     return emitter;
 };
 
-module.exports.fileEmitter = (from, to, names) => {
+export const fileEmitter = (from, to, names) => {
     const emitter = new EventEmitter();
     const [name] = names || ['current'];
     
@@ -59,7 +57,7 @@ module.exports.fileEmitter = (from, to, names) => {
     return emitter;
 };
 
-module.exports.endEmitter = () => {
+export const endEmitter = () => {
     const emitter = new EventEmitter();
     
     process.nextTick(() => {
@@ -69,7 +67,7 @@ module.exports.endEmitter = () => {
     return emitter;
 };
 
-module.exports.customEmitter = wraptile((fns) => {
+export const customEmitter = wraptile((fns) => {
     const emitter = new EventEmitter();
     
     emitter.pause = fns.pause;
@@ -82,7 +80,7 @@ module.exports.customEmitter = wraptile((fns) => {
     return emitter;
 });
 
-module.exports.abortEmitter = () => {
+export const abortEmitter = () => {
     const emitter = new EventEmitter();
     
     emitter.abort = () => {

@@ -1,11 +1,7 @@
-'use strict';
-
-const {once} = require('node:events');
-
-const {test} = require('supertape');
-const {tryToCatch} = require('try-to-catch');
-
-const connect = require('../lib/connect');
+import {once} from 'node:events';
+import {test} from 'supertape';
+import {tryToCatch} from 'try-to-catch';
+import connect from '../lib/connect.js';
 
 test('fileop: options: prefix', async (t) => {
     const prefix = '/hello';

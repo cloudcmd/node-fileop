@@ -1,7 +1,5 @@
-'use strict';
-
-const {test} = require('supertape');
-const getValue = require('../../server/get-value');
+import {test} from 'supertape';
+import getValue from '../../server/get-value.js';
 
 test('get-value: function', (t) => {
     const str = 'hello';

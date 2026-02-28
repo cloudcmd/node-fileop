@@ -1,5 +1,3 @@
-'use strict';
-
 const isFn = (a) => typeof a === 'function';
 
-module.exports = (a) => isFn(a) ? a() : a;
+export default (a) => isFn(a) ? a() : a;

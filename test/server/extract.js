@@ -1,20 +1,13 @@
-'use strict';
-
-const {once} = require('node:events');
-
-const {test, stub} = require('supertape');
-
-const wait = require('@iocmd/wait');
-
-const {
+import {once} from 'node:events';
+import {test, stub} from 'supertape';
+import wait from '@iocmd/wait';
+import connect from '../lib/connect.js';
+import {
     rawErrorEmitter,
     progressEmitter,
     fileEmitter,
     endEmitter,
-} = require('../lib/emitters');
-
-const connect = require('../lib/connect');
-const connectPath = '../lib/connect';
+} from '../lib/emitters.js';
 
 test('operate: extract: error', async (t) => {
     const {socket, done} = await connect({
@@ -66,8 +59,6 @@ test('operate: extract: progress', async (t) => {
 });
 
 test('operate: extract: file', async (t) => {
-    const connect = require(connectPath);
-    
     const {socket, done} = await connect({
         inly: fileEmitter,
     });
@@ -92,8 +83,6 @@ test('operate: extract: file', async (t) => {
 });
 
 test('operate: extract: end', async (t) => {
-    const connect = require(connectPath);
-    
     const {socket, done} = await connect({
         inly: endEmitter,
     });

@@ -1,7 +1,7 @@
 {
   "name": "@cloudcmd/fileop",
   "version": "9.0.4",
-  "type": "commonjs",
+  "type": "module",
   "description": "file operations emitter middleware",
   "main": "server/index.js",
   "scripts": {
@@ -66,6 +66,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@iocmd/wait": "^2.1.0",
+    "@putout/plugin-socket-io": "^1.0.0",
     "babel-loader": "^10.0.0",
     "babel-plugin-dynamic-import-node": "^2.0.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",

@@ -1,14 +1,12 @@
-'use strict';
+import http from 'node:http';
+import express from 'express';
+import {Server} from 'socket.io';
+import ioClient from 'socket.io-client';
+import {promisify} from 'es6-promisify';
+import {fileop} from '../../server/index.js';
 
-const http = require('node:http');
-const express = require('express');
-const io = require('socket.io');
-const ioClient = require('socket.io-client');
-const {promisify} = require('es6-promisify');
+export default promisify(connect);
 
-const {fileop} = require('../..');
-
-module.exports = promisify(connect);
 const getPrefix = (a) => a?.prefix;
 
 function connect(config, callback) {
@@ -17,7 +15,7 @@ function connect(config, callback) {
     const server = http.createServer(app);
     
     app.use(fileop(options));
-    fileop.listen(io(server), options);
+    fileop.listen(new Server(server), options);
     
     const ip = '127.0.0.1';
     const anyPort = 0;

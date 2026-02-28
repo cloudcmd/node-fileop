@@ -1,8 +1,9 @@
-'use strict';
+import path, {dirname} from 'node:path';
+import {env} from 'node:process';
+import {fileURLToPath} from 'node:url';
 
-const path = require('node:path');
-
-const {env} = require('node:process');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const dir = './client';
 const isDev = env.NODE_ENV === 'development';
 
@@ -16,7 +17,7 @@ const rules = [{
     loader: 'babel-loader',
 }];
 
-module.exports = {
+export default {
     devtool,
     entry: {
         fileop: `${dir}/fileop.js`,
