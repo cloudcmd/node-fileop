@@ -1,7 +1,7 @@
 import {run} from 'madrun';
 
 export default {
-    'test': () => `tape 'test/**/*.js'`,
+    'test': () => `tape 'test/**/*.js' 'client/**/*.spec.js'`,
     'lint': () => 'putout .',
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),
