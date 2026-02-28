@@ -9,7 +9,9 @@ const _isRootWin32 = currify(require('./is-root-win32'));
 const WIN32_ROOT_MSG = 'Could not extract from root on windows!';
 
 module.exports = (id, root, socket, from, to, files, overrides = {}) => {
-    const {isRootWin32 = _isRootWin32} = overrides;
+    const {
+        isRootWin32 = _isRootWin32,
+    } = overrides;
     
     from = webToWin(from, root);
     to = webToWin(to, root);

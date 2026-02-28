@@ -2,33 +2,20 @@
 
 const {once} = require('node:events');
 
-const {test} = require('supertape');
-const mock = require('mock-require');
-const clear = require('clear-module');
+const {test, stub} = require('supertape');
 
 const {errorEmitter} = require('../lib/emitters');
 
-const clearFileop = require('../lib/clear');
-
-const connectPath = '../lib/connect';
-const tarPath = 'jaguar';
-const isRootPath = '../../server/is-root-win32';
+const connect = require('../lib/connect');
 
 test('operate: tar: error', async (t) => {
-    clearFileop();
-    clear(tarPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
     
-    mock(tarPath, {
+    const {socket, done} = await connect({
         pack: errorEmitter,
     });
-    
-    const connect = require(connectPath);
-    
-    const {socket, done} = await connect();
     
     socket.emit('operation', 'tar', from, to, names);
     const [id] = await once(socket, 'id');
@@ -45,27 +32,15 @@ test('operate: tar: error', async (t) => {
 });
 
 test('operate: tar: error: root', async (t) => {
-    clearFileop();
-    clear(tarPath);
-    clear(isRootPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
-    const truth = () => true;
+    const truth = stub().returns(true);
+    const isRootWin32 = stub().returns(truth);
     
-    Object.defineProperty(truth, 'length', {
-        value: 2,
+    const {socket, done} = await connect({
+        isRootWin32,
     });
-    
-    const isRoot = require(isRootPath);
-    mock(isRootPath, truth);
-    
-    const connect = require(connectPath);
-    
-    mock(isRootPath, isRoot);
-    
-    const {socket, done} = await connect();
     
     socket.emit('operation', 'tar', from, to, names);
     const [id] = await once(socket, 'id');
@@ -74,7 +49,6 @@ test('operate: tar: error: root', async (t) => {
     const [e] = await once(socket, `${id}#error`);
     
     done();
-    clear(isRootPath);
     
     const error = 'Could not pack from/to root on windows!';
     
