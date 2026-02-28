@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 const DIR_ROOT = `${__dirname}/..`;
 
 const fileopFn = currify(_fileopFn);
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = () => process.env.NODE_ENV === 'development';
 
 export const fileop = (options) => {
     options = options || {};
@@ -33,7 +33,7 @@ function _fileopFn(prefix, req, res, next) {
     if (/^\/(fileop|0|1)\.js(\.map)?$/.test(req.url))
         req.url = '/dist' + req.url;
     
-    if (isDev)
+    if (isDev())
         req.url = req.url.replace(/^\/dist\//, '/dist-dev/');
     
     next();

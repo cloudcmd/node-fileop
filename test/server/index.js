@@ -25,7 +25,7 @@ test('fileop: static', async (t) => {
     t.end();
 });
 
-test.skip('fileop: static: dev', async (t) => {
+test('fileop: static: dev', async (t) => {
     const {NODE_ENV} = process.env;
     
     process.env.NODE_ENV = 'development';
