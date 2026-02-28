@@ -2,23 +2,26 @@
 
 const currify = require('currify');
 
-const inly = require('inly');
+const _inly = require('inly');
 const {webToWin} = require('mellow');
 
-const isRootWin32 = currify(require('./is-root-win32'));
+const _isRootWin32 = currify(require('./is-root-win32'));
 const WIN32_ROOT_MSG = 'Could not extract from root on windows!';
 
-module.exports = (id, root, socket, from, to) => {
+module.exports = (id, root, socket, from, to, files, overrides = {}) => {
+    const {isRootWin32 = _isRootWin32} = overrides;
+    
     from = webToWin(from, root);
     to = webToWin(to, root);
     
     if (!isRootWin32(root, from))
-        return operate(id, socket, from, to);
+        return operate(id, socket, from, to, overrides);
     
     socket.emit(`${id}#error`, WIN32_ROOT_MSG);
 };
 
-function operate(id, socket, from, to) {
+function operate(id, socket, from, to, overrides) {
+    const {inly = _inly} = overrides;
     const extractor = inly(from, to);
     
     extractor.on('file', (name) => {

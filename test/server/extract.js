@@ -2,12 +2,9 @@
 
 const {once} = require('node:events');
 
-const {test} = require('supertape');
-const mock = require('mock-require');
-const clear = require('clear-module');
-const wait = require('@iocmd/wait');
+const {test, stub} = require('supertape');
 
-const clearFileop = require('../lib/clear');
+const wait = require('@iocmd/wait');
 
 const {
     rawErrorEmitter,
@@ -16,17 +13,13 @@ const {
     endEmitter,
 } = require('../lib/emitters');
 
+const connect = require('../lib/connect');
 const connectPath = '../lib/connect';
-const extractPath = 'inly';
-const isRootPath = '../../server/is-root-win32';
 
 test('operate: extract: error', async (t) => {
-    clearFileop();
-    clear(extractPath);
-    mock(extractPath, rawErrorEmitter);
-    const connect = require(connectPath);
-    
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        inly: rawErrorEmitter,
+    });
     
     const error = 'EACCES: /hello/abc';
     const from = '/hello/abc';
@@ -49,13 +42,9 @@ test('operate: extract: error', async (t) => {
 });
 
 test('operate: extract: progress', async (t) => {
-    clearFileop();
-    clear(extractPath);
-    mock(extractPath, progressEmitter);
-    
-    const connect = require(connectPath);
-    
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        inly: progressEmitter,
+    });
     
     const from = '/hello/abc';
     const to = '/world/abc';
@@ -77,13 +66,11 @@ test('operate: extract: progress', async (t) => {
 });
 
 test('operate: extract: file', async (t) => {
-    clearFileop();
-    clear(extractPath);
-    mock(extractPath, fileEmitter);
-    
     const connect = require(connectPath);
     
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        inly: fileEmitter,
+    });
     
     const from = '/hello/abc';
     const to = '/world/abc';
@@ -105,13 +92,11 @@ test('operate: extract: file', async (t) => {
 });
 
 test('operate: extract: end', async (t) => {
-    clearFileop();
-    clear(extractPath);
-    mock(extractPath, endEmitter);
-    
     const connect = require(connectPath);
     
-    const {socket, done} = await connect();
+    const {socket, done} = await connect({
+        inly: endEmitter,
+    });
     
     const from = '/hello/abc';
     const to = '/world/abc';
@@ -129,26 +114,15 @@ test('operate: extract: end', async (t) => {
 });
 
 test('operate: extract: error: root', async (t) => {
-    clearFileop();
-    clear(isRootPath);
-    
     const from = '/hello';
     const to = '/world';
     const names = ['abc'];
-    const truth = () => true;
+    const truth = stub().returns(true);
+    const isRootWin32 = stub().returns(truth);
     
-    Object.defineProperty(truth, 'length', {
-        value: 2,
+    const {socket, done} = await connect({
+        isRootWin32,
     });
-    
-    const isRoot = require(isRootPath);
-    mock(isRootPath, truth);
-    
-    const connect = require(connectPath);
-    
-    mock(isRootPath, isRoot);
-    
-    const {socket, done} = await connect();
     
     socket.emit('operation', 'extract', from, to, names);
     const [id] = await once(socket, 'id');
@@ -157,7 +131,6 @@ test('operate: extract: error: root', async (t) => {
     const [e] = await once(socket, `${id}#error`);
     
     done();
-    clear(isRootPath);
     
     const error = 'Could not extract from root on windows!';
     
