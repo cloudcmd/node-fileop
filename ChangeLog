@@ -4,7 +4,7 @@ fix:
 - cc2438f @cloudcmd/fileop: libraryExport (coderaiser/cloudcmd#460)
 
 feature:
-- 8e93caf @cloudcmd/fileop: superc8 v12.3.1
+- 8e93calf @cloudcmd/fileop: superc8 v12.3.1
 - 9abfac5 @cloudcmd/fileop: webpack-cli v7.0.2
 
 2026.02.28, v9.0.6
