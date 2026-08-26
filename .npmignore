@@ -1,11 +1,10 @@
 *.config.*
 *.log
-*.loc
+*.lock
 
 .*
 
 webpack.config.js
-yarn.lock
 
 test
 client

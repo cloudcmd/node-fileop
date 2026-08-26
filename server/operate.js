@@ -1,7 +1,7 @@
 import currify from 'currify';
 import _remy from 'remy';
 import {copymitter as _copymitter} from 'copymitter';
-import moveFiles from '@cloudcmd/move-files';
+import {moveFiles} from '@cloudcmd/move-files';
 import {webToWin} from 'mellow';
 import __isRootWin32 from './is-root-win32.js';
 
