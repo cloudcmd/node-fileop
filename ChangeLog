@@ -1,3 +1,12 @@
+2026.11.20, v9.1.0
+
+fix:
+- fe8c995 server: path traverse
+
+feature:
+- ff73c9e @cloudcmd/fileop: migrate to rspack
+- ddd20a6 @cloudcmd/fileop: supertape v13.6.2
+
 2026.08.26, v9.0.8
 
 feature:
