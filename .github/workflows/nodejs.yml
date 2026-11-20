@@ -2,8 +2,8 @@ name: Node CI
 permissions:
   contents: write
 on:
-  push:
-    branches: master
+  - push
+  - pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,9 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Redrun
-        run: bun install redrun madrun -g --no-save
+        run: bun i redrun madrun -g --no-save
       - name: Install
-        run: yarn --no-lockfile
+        run: bun i --no-save
       - name: Init Madrun
         run: madrun --init
       - name: Lint
