@@ -12,11 +12,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIR_ROOT = path.resolve(__dirname, '../..');
 
 const get = (port, url) => new Promise((resolve, reject) => {
-    http.get({host: '127.0.0.1', port, path: url}, (res) => {
-        let body = '';
-        res.on('data', (chunk) => body += chunk);
-        res.on('end', () => resolve({status: res.statusCode, body}));
-    }).on('error', reject);
+    http
+        .get({host: '127.0.0.1', port, path: url}, (res) => {
+            let body = '';
+            res.on('data', (chunk) => body += chunk);
+            res.on('end', () => resolve({
+                status: res.statusCode,
+                body,
+            }));
+        })
+        .on('error', reject);
 });
 
 const start = async () => {
@@ -24,20 +29,30 @@ const start = async () => {
     app.use(fileop());
     const server = app.listen(0, '127.0.0.1');
     await once(server, 'listening');
-    return {server, port: server.address().port};
+    
+    return {
+        server,
+        port: server.address().port,
+    };
 };
 
 const withSecret = async (makeUrl) => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'fileop-'));
     const secret = path.join(dir, 'secret.txt');
+    
     fs.writeFileSync(secret, 'outside-secret');
     
-    const up = path.relative(DIR_ROOT, secret).split(path.sep).join('/');
+    const up = path
+        .relative(DIR_ROOT, secret)
+        .split(path.sep)
+        .join('/');
     const {server, port} = await start();
     const result = await get(port, makeUrl(up));
     
     server.close();
-    fs.rmSync(dir, {recursive: true});
+    fs.rmSync(dir, {
+        recursive: true,
+    });
     
     return result;
 };
