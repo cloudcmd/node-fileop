@@ -39,7 +39,25 @@ function _fileopFn(prefix, req, res, next) {
     next();
 }
 
+function isInside(root, file) {
+    const relative = path.relative(root, file);
+    
+    if (!relative || path.isAbsolute(relative))
+        return false;
+    
+    return relative !== '..' && !relative.startsWith(`..${path.sep}`);
+}
+
 function staticFn(req, res) {
-    const file = path.normalize(DIR_ROOT + req.url);
-    res.sendFile(file);
+    const [pathname] = req.url.split('?');
+    const root = path.resolve(DIR_ROOT);
+    const relativePath = `.${path.posix.normalize(`/${pathname}`)}`;
+    
+    if (pathname.includes('\0') || !isInside(root, path.resolve(root, pathname.slice(1))))
+        return res.sendStatus(403);
+    
+    res.sendFile(relativePath, {
+        root,
+        dotfiles: 'deny',
+    });
 }
