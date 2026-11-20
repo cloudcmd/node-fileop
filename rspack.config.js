@@ -1,20 +1,29 @@
-import path, {dirname} from 'node:path';
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
 import {env} from 'node:process';
-import {fileURLToPath} from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const root = import.meta.dirname;
 const dir = './client';
 const isDev = env.NODE_ENV === 'development';
 
-const dist = path.resolve(__dirname, 'dist');
-const distDev = path.resolve(__dirname, 'dist-dev');
+const dist = path.resolve(root, 'dist');
+const distDev = path.resolve(root, 'dist-dev');
 const devtool = isDev ? 'eval' : 'source-map';
+
+const targets = readFileSync(path.join(root, '.browserslistrc'), 'utf8')
+    .split('\n')
+    .filter(Boolean);
 
 const rules = [{
     test: /\.js$/,
     exclude: /node_modules/,
-    loader: 'babel-loader',
+    loader: 'builtin:swc-loader',
+    type: 'javascript/auto',
+    options: {
+        env: {
+            targets,
+        },
+    },
 }];
 
 export default {
@@ -33,9 +42,12 @@ export default {
     module: {
         rules,
     },
+    optimization: {
+        chunkIds: 'natural',
+    },
 };
 
 function devtoolModuleFilenameTemplate(info) {
-    const resource = info.absoluteResourcePath.replace(__dirname + path.sep, '');
+    const resource = info.absoluteResourcePath.replace(root + path.sep, '');
     return `file://fileop/${resource}`;
 }

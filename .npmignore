@@ -4,7 +4,7 @@
 
 .*
 
-webpack.config.js
+rspack.config.js
 
 test
 client

@@ -9,14 +9,6 @@
             "plugins": [
                 "dynamic-import-node"
             ]
-        },
-        "client": {
-            "presets": [
-                "@babel/preset-env"
-            ],
-            "plugins": [
-                "dynamic-import-webpack"
-            ]
         }
     }
 }

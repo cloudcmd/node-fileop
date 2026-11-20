@@ -9,7 +9,7 @@ export default {
     'coverage': async () => `c8 ${await run('test')}`,
     'report': () => 'c8 report --reporter=lcov',
     'build': () => run(['rmdir', 'build:*']),
-    'build-progress': () => 'BABEL_ENV=client webpack --progress',
+    'build-progress': () => 'rspack',
     'build:client': () => run('build-progress', '--mode production'),
     'build:client:dev': async () => `NODE_ENV=development ${await run('build-progress', '--mode development')}`,
     'watcher': () => 'nodemon -w client -w server -w test --exec',
