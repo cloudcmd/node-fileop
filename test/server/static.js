@@ -46,6 +46,7 @@ const withSecret = async (makeUrl) => {
         .relative(DIR_ROOT, secret)
         .split(path.sep)
         .join('/');
+    
     const {server, port} = await start();
     const result = await get(port, makeUrl(up));
     
