@@ -32,11 +32,14 @@ export default {
         fileop: `${dir}/fileop.js`,
     },
     output: {
-        library: 'fileop',
+        library: {
+            name: 'fileop',
+            type: 'var',
+            export: 'default',
+        },
         filename: '[name].js',
         path: isDev ? distDev : dist,
         pathinfo: isDev,
-        libraryExport: 'default',
         devtoolModuleFilenameTemplate,
     },
     module: {
