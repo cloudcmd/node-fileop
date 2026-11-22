@@ -1,3 +1,8 @@
+2026.11.22, v9.1.1
+
+fix:
+- db1bad8 fileop: client: exports
+
 2026.11.20, v9.1.0
 
 fix:
